@@ -4,604 +4,960 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Junho do Orgulho — Mês LGBTQIAPN+</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Syne:wght@400;600;800&display=swap');
+
+/* ---- PALETAS ---- */
+:root {
+  --bg:#0d0a14; --bg2:#120f1c; --surface:#1a1528; --surface2:#221d34;
+  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.14);
+  --pink:#e040fb; --orange:#ff7043; --yellow:#ffca28; --green:#00e676;
+  --cyan:#18ffff; --blue:#448aff; --violet:#7c4dff; --magenta:#f50057;
+  --text:#f3eeff; --muted:#9985b8; --accent:#e040fb;
+  --radius:18px; --radius-sm:10px;
+  --transition:0.32s cubic-bezier(0.4,0,0.2,1);
+  --font-display:'Bebas Neue',sans-serif;
+  --font-serif:'Fraunces',serif;
+  --font-body:'Syne',sans-serif;
+}
+[data-palette="tropical"] {
+  --bg:#050e12; --bg2:#071218; --surface:#0e1e24; --surface2:#142630;
+  --border:rgba(0,255,200,0.08); --border2:rgba(0,255,200,0.16);
+  --pink:#ff4081; --orange:#ff6d00; --yellow:#eeff41; --green:#00e5ff;
+  --cyan:#64ffda; --blue:#00b0ff; --violet:#aa00ff; --magenta:#ff4081;
+  --text:#e0fff8; --muted:#5ba88c; --accent:#00e5ff;
+}
+[data-palette="fire"] {
+  --bg:#110800; --bg2:#160c00; --surface:#1e1100; --surface2:#271600;
+  --border:rgba(255,160,0,0.08); --border2:rgba(255,160,0,0.18);
+  --pink:#ff1744; --orange:#ff6d00; --yellow:#ffea00; --green:#76ff03;
+  --cyan:#ff9100; --blue:#ff6d00; --violet:#d500f9; --magenta:#ff1744;
+  --text:#fff8e1; --muted:#a07050; --accent:#ff6d00;
+}
+[data-palette="pastel"] {
+  --bg:#0f0f1a; --bg2:#131322; --surface:#1c1c30; --surface2:#24243c;
+  --border:rgba(200,180,255,0.08); --border2:rgba(200,180,255,0.18);
+  --pink:#f48fb1; --orange:#ffcc80; --yellow:#fff59d; --green:#a5d6a7;
+  --cyan:#80deea; --blue:#90caf9; --violet:#ce93d8; --magenta:#f48fb1;
+  --text:#fce4ec; --muted:#9090b0; --accent:#f48fb1;
+}
+[data-palette="nature"] {
+  --bg:#030e0a; --bg2:#050f0b; --surface:#0b1f16; --surface2:#0f2a1e;
+  --border:rgba(0,230,118,0.07); --border2:rgba(0,230,118,0.15);
+  --pink:#f06292; --orange:#ffb74d; --yellow:#fff176; --green:#69f0ae;
+  --cyan:#4dd0e1; --blue:#4fc3f7; --violet:#b39ddb; --magenta:#f06292;
+  --text:#e8f5e9; --muted:#5a9070; --accent:#69f0ae;
+}
+
+/* ---- Reset ---- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;transition:background .5s,color .5s}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrapper{max-width:1180px;margin:0 auto;padding:0 5vw}
+.rainbow-text{background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ---- PALETTE SWITCHER ---- */
+.palette-tab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:999;display:flex;flex-direction:row;align-items:center}
+.palette-toggle-btn{background:var(--surface2);border:1px solid var(--border2);border-right:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);padding:14px 10px;cursor:pointer;writing-mode:vertical-lr;text-orientation:mixed;transform:rotate(180deg);font-family:var(--font-body);font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);transition:var(--transition);white-space:nowrap}
+.palette-toggle-btn:hover{color:var(--text);background:var(--surface)}
+.palette-panel{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius) 0 0 var(--radius);padding:0;display:flex;flex-direction:column;gap:.85rem;width:0;overflow:hidden;opacity:0;transition:width .35s cubic-bezier(.4,0,.2,1),opacity .25s ease,padding .35s ease;border-left:none}
+.palette-tab.open .palette-panel{width:200px;opacity:1;padding:1.5rem 1.2rem}
+.palette-panel-title{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap;margin-bottom:.25rem}
+.palette-option{display:flex;align-items:center;gap:.75rem;cursor:pointer;padding:.6rem .75rem;border-radius:var(--radius-sm);border:1px solid transparent;transition:var(--transition);white-space:nowrap}
+.palette-option:hover{background:var(--surface2);border-color:var(--border2)}
+.palette-option.active{border-color:var(--accent);background:rgba(255,255,255,.05)}
+.palette-dots{display:flex;gap:4px;flex-shrink:0}
+.palette-dot{width:10px;height:10px;border-radius:50%}
+.palette-name{font-size:.78rem;font-weight:600;color:var(--text)}
+
+/* ---- NAV ---- */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5vw;height:68px;display:flex;align-items:center;justify-content:space-between;transition:var(--transition)}
+nav.scrolled{background:rgba(13,10,20,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
+.nav-logo{font-family:var(--font-body);font-weight:800;font-size:1rem;letter-spacing:.01em}
+.nav-logo span{background:linear-gradient(90deg,var(--pink),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;align-items:center;gap:.15rem}
+.nav-links a{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:100px;color:var(--muted);transition:var(--transition)}
+.nav-links a:hover{color:var(--text);background:var(--surface2)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:var(--transition)}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;z-index:150;background:rgba(13,10,20,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transform:translateY(-100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{font-family:var(--font-display);font-size:2rem;letter-spacing:.05em;color:var(--muted);transition:var(--transition)}
+.mobile-menu a:hover{color:var(--text)}
+
+/* ---- HERO ---- */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 5vw 80px;position:relative;overflow:hidden;text-align:center}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,rgba(224,64,251,.22),transparent 70%);top:-100px;left:-100px;animation:floatOrb 12s ease-in-out infinite}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(68,138,255,.18),transparent 70%);bottom:-80px;right:10%;animation:floatOrb 15s ease-in-out infinite reverse}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,202,40,.13),transparent 70%);top:40%;left:40%;animation:floatOrb 10s ease-in-out infinite 3s}
+@keyframes floatOrb{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,30px)}}
+.hero-inner{position:relative;z-index:2;max-width:900px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border2);padding:8px 20px;border-radius:100px;margin-bottom:2.5rem;animation:fadeUp .7s .1s both}
+.eyebrow-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--pink);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero-title{display:flex;flex-direction:column;align-items:center;gap:0;animation:fadeUp .7s .25s both}
+.ht-line{font-family:var(--font-display);display:block;line-height:.9;letter-spacing:.04em}
+.line1{font-size:clamp(4rem,15vw,11rem);color:var(--text)}
+.line2{font-size:clamp(2.5rem,9vw,7rem);color:var(--muted)}
+.line3{font-size:clamp(4rem,15vw,11rem)}
+.hero-desc{margin-top:2rem;font-size:clamp(.95rem,2vw,1.2rem);color:var(--muted);line-height:1.8;animation:fadeUp .7s .4s both}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;animation:fadeUp .7s .55s both}
+.btn-primary{background:linear-gradient(135deg,var(--pink),var(--violet));color:#fff;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 36px;border-radius:100px;transition:var(--transition);border:none;cursor:pointer;font-family:var(--font-body)}
+.btn-primary:hover{opacity:.88;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);font-weight:600;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;padding:14px 36px;border-radius:100px;border:1px solid var(--border2);transition:var(--transition);cursor:pointer;font-family:var(--font-body)}
+.btn-outline:hover{background:var(--surface2);transform:translateY(-2px)}
+.hero-stats{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:3.5rem;animation:fadeUp .7s .7s both}
+.hs{text-align:center}
+.hs strong{display:block;font-family:var(--font-display);font-size:2rem;letter-spacing:.04em;background:linear-gradient(135deg,var(--text),var(--muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hs span{font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.hs-sep{width:1px;height:40px;background:var(--border2)}
+.hero-scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);animation:fadeUp .7s 1s both,bounce 2s ease-in-out 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---- SEÇÕES ---- */
+section{padding:110px 0}
+.section-header{margin-bottom:4rem}
+.tag{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:1rem;position:relative;padding-left:20px}
+.tag::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:10px;height:2px;background:var(--pink)}
+.sec-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:400;line-height:.95;letter-spacing:.03em;margin-bottom:1.25rem;text-transform:uppercase}
+.sec-title em{font-family:var(--font-serif);font-style:italic;font-size:clamp(2.2rem,5.5vw,4rem);text-transform:none;letter-spacing:0;background:linear-gradient(135deg,var(--pink),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-lead{font-size:1.05rem;color:var(--muted);max-width:640px;line-height:1.8}
+
+/* ---- FRASES ---- */
+#frases{background:linear-gradient(160deg,var(--bg2) 0%,var(--bg) 100%);padding:80px 0}
+.frase-box{max-width:820px;margin:0 auto}
+.frase-display{background:var(--surface);border:1px solid var(--border2);border-radius:24px;padding:3.5rem 3rem;position:relative;overflow:hidden;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2rem}
+.frase-display::before{content:'❝';position:absolute;top:1rem;left:1.5rem;font-size:5rem;line-height:1;color:var(--pink);opacity:.12;font-family:serif}
+.frase-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(224,64,251,.08),transparent 70%);pointer-events:none}
+.frase-text{font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.65rem);font-style:italic;line-height:1.55;color:var(--text);position:relative;z-index:1;transition:opacity .4s ease,transform .4s ease}
+.frase-text.fading{opacity:0;transform:translateY(10px)}
+.frase-emoji{font-size:2.5rem;position:relative;z-index:1;animation:bounceIn .5s ease}
+@keyframes bounceIn{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+.btn-frase{background:linear-gradient(135deg,var(--pink),var(--violet));color:#fff;font-weight:700;font-size:.95rem;letter-spacing:.05em;padding:15px 40px;border-radius:100px;border:none;cursor:pointer;transition:var(--transition);font-family:var(--font-body);display:inline-flex;align-items:center;gap:.6rem}
+.btn-frase:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 10px 30px rgba(224,64,251,.3)}
+
+/* ---- SOBRE ---- */
+#sobre{background:var(--bg2)}
+.sobre-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
+.sobre-text p{color:var(--muted);margin-bottom:1.2rem;font-size:1.02rem;line-height:1.85}
+.sobre-text p strong{color:var(--text)}
+.sobre-text blockquote{border-left:3px solid var(--pink);padding:1rem 0 1rem 1.5rem;margin-top:2rem;font-family:var(--font-serif);font-style:italic;font-size:1.1rem;color:var(--text);opacity:.85}
+.sobre-text blockquote cite{display:block;font-size:.8rem;font-style:normal;color:var(--muted);margin-top:.5rem;font-family:var(--font-body)}
+.sobre-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-card{border-radius:var(--radius);padding:1.75rem 1.5rem;border:1px solid var(--border);transition:var(--transition);position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.sc-pink::before{background:var(--pink)} .sc-yellow::before{background:var(--yellow)} .sc-cyan::before{background:var(--cyan)} .sc-green::before{background:var(--green)}
+.sc-pink{background:rgba(224,64,251,.07)} .sc-yellow{background:rgba(255,202,40,.07)} .sc-cyan{background:rgba(24,255,255,.07)} .sc-green{background:rgba(0,230,118,.07)}
+.stat-card:hover{transform:translateY(-4px)}
+.sc-num{font-family:var(--font-display);font-size:2.6rem;letter-spacing:.04em;line-height:1;margin-bottom:.4rem}
+.sc-pink .sc-num{color:var(--pink)} .sc-yellow .sc-num{color:var(--yellow)} .sc-cyan .sc-num{color:var(--cyan)} .sc-green .sc-num{color:var(--green)}
+.sc-label{font-size:.82rem;color:var(--muted);line-height:1.4}
+
+/* ---- CURIOSIDADES ---- */
+.curio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.curio-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.25rem 2rem;position:relative;overflow:hidden;transition:var(--transition)}
+.curio-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;opacity:0;transition:var(--transition)}
+.curio-card[data-color="pink"]::after{background:var(--pink)} .curio-card[data-color="yellow"]::after{background:var(--yellow)} .curio-card[data-color="cyan"]::after{background:var(--cyan)} .curio-card[data-color="violet"]::after{background:var(--violet)} .curio-card[data-color="green"]::after{background:var(--green)}
+.curio-card:hover{transform:translateY(-6px);border-color:var(--border2)}
+.curio-card:hover::after{opacity:1}
+.curio-icon{font-size:2rem;margin-bottom:1.25rem;display:block}
+.curio-card h3{font-family:var(--font-serif);font-size:1.2rem;font-weight:700;margin-bottom:.75rem}
+.curio-card p{font-size:.9rem;color:var(--muted);line-height:1.7}
+
+/* ---- SIGLA ---- */
+#sigla{background:var(--bg2)}
+.sigla-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.letter-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem 1.5rem;display:flex;gap:1.25rem;align-items:flex-start;transition:var(--transition)}
+.letter-card:hover{transform:translateY(-3px);border-color:var(--border2)}
+.lb{font-family:var(--font-display);font-size:2.8rem;line-height:1;min-width:50px;letter-spacing:.02em}
+.li h4{font-size:.95rem;font-weight:700;margin-bottom:.35rem}
+.li p{font-size:.83rem;color:var(--muted);line-height:1.6}
+.lc-l .lb{color:var(--pink)} .lc-g .lb{color:var(--orange)} .lc-b .lb{color:var(--yellow)} .lc-t .lb{color:var(--green)}
+.lc-q .lb{color:#40d4b0} .lc-i .lb{color:var(--cyan)} .lc-a .lb{color:var(--blue)} .lc-p .lb{color:var(--violet)} .lc-n .lb{color:var(--magenta)}
+
+/* ---- PLUS ---- */
+#plus{background:linear-gradient(160deg,#0a0015 0%,#100020 40%,#050a1a 100%);position:relative;overflow:hidden}
+.plus-bg-text{position:absolute;right:-.1em;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:clamp(200px,35vw,400px);line-height:1;color:rgba(255,255,255,.025);pointer-events:none;user-select:none;letter-spacing:-.05em}
+.plus-title{color:#fff}
+.plus-em{background:linear-gradient(90deg,var(--yellow),var(--orange),var(--pink),var(--violet))!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
+.plus-identities{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:1rem;margin-bottom:5rem}
+.plus-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden;transition:var(--transition);display:flex;flex-direction:column}
+.plus-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.plus-flag{height:60px;display:flex;flex-direction:column}
+.flag-genderfluid-mini{background:linear-gradient(180deg,#ff76a4 20%,#fff 20%,#fff 40%,#be18d6 40%,#be18d6 60%,#000 60%,#000 80%,#c4e2ff 80%)}
+.flag-polysexual-mini{background:linear-gradient(180deg,#f714ba 33%,#01d66a 33%,#01d66a 66%,#1594f6 66%)}
+.flag-demi-mini{background:linear-gradient(180deg,#fff 25%,#6e0070 25%,#6e0070 50%,#d2d2d2 50%,#d2d2d2 75%,#000 75%)}
+.flag-bigender-mini{background:linear-gradient(180deg,#f9a8d4 14%,#fff 14%,#fff 29%,#9b59b6 29%,#9b59b6 71%,#fff 71%,#fff 86%,#f9a8d4 86%)}
+.flag-aromantic-mini{background:linear-gradient(180deg,#3d9140 20%,#a8d379 20%,#a8d379 40%,#fff 40%,#fff 60%,#a9a9a9 60%,#a9a9a9 80%,#000 80%)}
+.flag-grey-mini{background:linear-gradient(180deg,#000 20%,#a9a9a9 20%,#a9a9a9 40%,#fff 40%,#fff 60%,#a9a9a9 60%,#a9a9a9 80%,#000 80%)}
+.plus-card-body{padding:1.5rem;flex:1}
+.plus-tag{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:100px;border:1px solid currentColor;display:inline-block;margin-bottom:.75rem;opacity:.8}
+.plus-card[data-cat="gênero"] .plus-tag{color:var(--orange)} .plus-card[data-cat="orientação"] .plus-tag{color:var(--pink)} .plus-card[data-cat="espectro"] .plus-tag{color:var(--cyan)}
+.plus-card h3{font-family:var(--font-serif);font-size:1.25rem;font-weight:700;margin-bottom:.5rem}
+.plus-card p{font-size:.87rem;color:rgba(255,255,255,.55);line-height:1.7}
+.plus-message{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:3rem}
+.plus-msg-inner{display:flex;gap:3rem;align-items:center}
+.plus-msg-symbol{font-family:var(--font-display);font-size:8rem;line-height:1;background:linear-gradient(135deg,var(--yellow),var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;letter-spacing:-.02em}
+.plus-msg-text h3{font-family:var(--font-serif);font-size:1.8rem;margin-bottom:1rem}
+.plus-msg-text p{color:rgba(255,255,255,.55);font-size:1rem;line-height:1.8}
+.plus-msg-text p strong{color:rgba(255,255,255,.85)}
+
+/* ---- BANDEIRAS ---- */
+.flags-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1.25rem}
+.flag-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition)}
+.flag-card:hover{transform:translateY(-6px);border-color:var(--border2);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.flag-vis{height:110px;display:flex;flex-direction:column}
+.flag-vis .stripe{flex:1}
+.flag-arcoiris .s1{background:#e40303} .flag-arcoiris .s2{background:#ff8c00} .flag-arcoiris .s3{background:#ffed00} .flag-arcoiris .s4{background:#008026} .flag-arcoiris .s5{background:#004dff} .flag-arcoiris .s6{background:#750787}
+.flag-trans .s1{background:#55cdfc} .flag-trans .s2{background:#f7a8b8} .flag-trans .s3{background:#fff} .flag-trans .s4{background:#f7a8b8} .flag-trans .s5{background:#55cdfc}
+.flag-bi .s1{background:#d60270;flex:2!important} .flag-bi .s2{background:#9b4f96;flex:1!important} .flag-bi .s3{background:#0038a8;flex:2!important}
+.flag-pan .s1{background:#ff218c} .flag-pan .s2{background:#ffd800} .flag-pan .s3{background:#21b1ff}
+.flag-aroma .s1{background:#3d1a78} .flag-aroma .s2{background:#a7a7a7} .flag-aroma .s3{background:#fff} .flag-aroma .s4{background:#a7a7a7} .flag-aroma .s5{background:#3d1a78}
+.flag-assex .s1{background:#000} .flag-assex .s2{background:#a3a3a3} .flag-assex .s3{background:#fff} .flag-assex .s4{background:#800080}
+.flag-nb .s1{background:#fcf434} .flag-nb .s2{background:#fff} .flag-nb .s3{background:#9c59d1} .flag-nb .s4{background:#2c2c2c}
+.flag-inter{position:relative;background:#ffd800;display:flex;align-items:center;justify-content:center}
+.inter-circle{width:52px;height:52px;border-radius:50%;border:8px solid #7902aa;background:transparent}
+.flag-gender .s1{background:#ff76a4} .flag-gender .s2{background:#fff} .flag-gender .s3{background:#be18d6} .flag-gender .s4{background:#000} .flag-gender .s5{background:#c4e2ff}
+.flag-poly .s1{background:#f714ba;flex:2!important} .flag-poly .s2{background:#01d66a;flex:1!important} .flag-poly .s3{background:#1594f6;flex:2!important}
+.flag-demi .s1{background:#fff;flex:2!important} .flag-demi .s2{background:#6e0070;flex:1!important} .flag-demi .s3{background:#d2d2d2;flex:1!important} .flag-demi .s4{background:#000;flex:1!important}
+.flag-lesbian .s1{background:#d62900} .flag-lesbian .s2{background:#ff9b55} .flag-lesbian .s3{background:#fff} .flag-lesbian .s4{background:#d461a6} .flag-lesbian .s5{background:#a50062}
+.flag-info{padding:1rem 1.1rem}
+.fn{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
+.fd{font-size:.76rem;color:var(--muted);line-height:1.5}
+
+/* ---- MURAL ---- */
+#mural{background:var(--bg2)}
+.mural-container{max-width:900px;margin:0 auto}
+.mural-form-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:2rem;margin-bottom:2.5rem}
+.mural-form-card h3{font-family:var(--font-serif);font-size:1.4rem;font-weight:700;margin-bottom:.4rem}
+.mural-form-card p{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}
+.mural-textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem;font-family:var(--font-body);font-size:.95rem;color:var(--text);outline:none;resize:vertical;min-height:110px;line-height:1.6;transition:var(--transition);margin-bottom:1rem}
+.mural-textarea:focus{border-color:var(--pink);background:rgba(224,64,251,.04)}
+.mural-textarea::placeholder{color:var(--muted)}
+.mural-bottom{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.mural-emoji-select{display:flex;gap:.5rem;flex-wrap:wrap}
+.mural-emoji-btn{width:38px;height:38px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:1.1rem;transition:var(--transition);display:flex;align-items:center;justify-content:center}
+.mural-emoji-btn:hover,.mural-emoji-btn.sel{background:rgba(224,64,251,.12);border-color:var(--pink);transform:scale(1.1)}
+.btn-enviar{background:linear-gradient(135deg,var(--pink),var(--violet));color:#fff;font-weight:700;font-size:.88rem;letter-spacing:.05em;padding:12px 28px;border-radius:100px;border:none;cursor:pointer;transition:var(--transition);font-family:var(--font-body)}
+.btn-enviar:hover{opacity:.88;transform:translateY(-2px)}
+.mural-posts{display:flex;flex-direction:column;gap:1rem}
+.mural-post{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.5rem;transition:var(--transition);animation:fadeUp .4s ease both}
+.mural-post:hover{border-color:var(--border2)}
+.mural-post-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.mural-post-emoji{font-size:1.6rem}
+.mural-post-meta{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.mural-post-text{font-size:.95rem;color:var(--text);line-height:1.7;margin-bottom:1rem;word-break:break-word}
+.mural-reactions{display:flex;gap:.5rem;flex-wrap:wrap}
+.reaction-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;cursor:pointer;font-size:.82rem;color:var(--muted);transition:var(--transition);font-family:var(--font-body)}
+.reaction-btn:hover,.reaction-btn.reacted{background:rgba(224,64,251,.1);border-color:var(--pink);color:var(--text)}
+.reaction-btn span.count{font-weight:700}
+
+/* ---- ONGs ---- */
+#ongs{background:var(--bg)}
+.ongs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem}
+.ong-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1.75rem;transition:var(--transition);position:relative;overflow:hidden}
+.ong-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
+.ong-card[data-type="nacional"]::before{background:linear-gradient(180deg,var(--pink),var(--violet))}
+.ong-card[data-type="saude"]::before{background:linear-gradient(180deg,var(--green),var(--cyan))}
+.ong-card[data-type="juridico"]::before{background:linear-gradient(180deg,var(--yellow),var(--orange))}
+.ong-card[data-type="trans"]::before{background:linear-gradient(180deg,#55cdfc,#f7a8b8)}
+.ong-card[data-type="acolhimento"]::before{background:linear-gradient(180deg,var(--cyan),var(--blue))}
+.ong-card[data-type="crise"]::before{background:linear-gradient(180deg,var(--orange),var(--pink))}
+.ong-card:hover{transform:translateY(-4px);border-color:var(--border2)}
+.ong-badge{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:100px;border:1px solid currentColor;display:inline-block;margin-bottom:.85rem;opacity:.75}
+.ong-card[data-type="nacional"] .ong-badge{color:var(--pink)}
+.ong-card[data-type="saude"] .ong-badge{color:var(--green)}
+.ong-card[data-type="juridico"] .ong-badge{color:var(--yellow)}
+.ong-card[data-type="trans"] .ong-badge{color:var(--cyan)}
+.ong-card[data-type="acolhimento"] .ong-badge{color:var(--blue)}
+.ong-card[data-type="crise"] .ong-badge{color:var(--orange)}
+.ong-name{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;margin-bottom:.5rem}
+.ong-desc{font-size:.86rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.ong-contact{font-size:.8rem;color:var(--muted);display:flex;flex-direction:column;gap:.3rem}
+.ong-contact strong{color:var(--text)}
+
+/* ---- DIREITOS ---- */
+#direitos{background:var(--bg2)}
+.direitos-accordion{max-width:820px;display:flex;flex-direction:column;gap:1rem}
+.direito-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:var(--transition)}
+.direito-item.open{border-color:var(--border2)}
+.direito-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;gap:1rem;transition:var(--transition);user-select:none}
+.direito-header:hover{background:var(--surface2)}
+.direito-left{display:flex;align-items:center;gap:1rem}
+.direito-icon{font-size:1.5rem;flex-shrink:0}
+.direito-title{font-weight:700;font-size:.95rem}
+.direito-subtitle{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+.direito-arrow{width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--transition);font-size:.7rem;color:var(--muted)}
+.direito-item.open .direito-arrow{transform:rotate(180deg);background:rgba(224,64,251,.15);color:var(--pink)}
+.direito-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.direito-item.open .direito-body{max-height:600px}
+.direito-content{padding:0 1.5rem 1.5rem;font-size:.9rem;color:var(--muted);line-height:1.8}
+.direito-content ul{padding-left:1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.direito-content li::marker{color:var(--pink)}
+.direito-content strong{color:var(--text)}
+
+/* ---- QUIZ ---- */
+#quiz{background:var(--bg)}
+.quiz-box{max-width:720px;margin:0 auto}
+.quiz-progress{display:flex;gap:6px;margin-bottom:2rem}
+.quiz-progress-bar{height:4px;border-radius:2px;background:var(--border2);flex:1;transition:background .3s ease}
+.quiz-progress-bar.done{background:linear-gradient(90deg,var(--pink),var(--violet))}
+.quiz-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:2.5rem 2rem;min-height:320px;display:flex;flex-direction:column}
+.quiz-step{display:none;flex-direction:column;gap:1.5rem;flex:1}
+.quiz-step.active{display:flex;animation:fadeUp .4s ease both}
+.quiz-q{font-family:var(--font-serif);font-size:1.35rem;font-weight:700;line-height:1.4}
+.quiz-opts{display:flex;flex-direction:column;gap:.75rem}
+.quiz-opt{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem;cursor:pointer;font-size:.92rem;color:var(--text);transition:var(--transition);text-align:left;font-family:var(--font-body);line-height:1.5}
+.quiz-opt:hover{border-color:var(--pink);background:rgba(224,64,251,.07);transform:translateX(4px)}
+.quiz-opt.chosen{border-color:var(--pink);background:rgba(224,64,251,.12)}
+.quiz-result{display:none;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;flex:1}
+.quiz-result.active{display:flex;animation:fadeUp .5s ease both}
+.quiz-result-emoji{font-size:4rem;animation:bounceIn .5s ease}
+.quiz-result-title{font-family:var(--font-display);font-size:2.5rem;letter-spacing:.04em}
+.quiz-result-text{font-size:.97rem;color:var(--muted);line-height:1.75;max-width:520px}
+.btn-reiniciar{background:transparent;border:1px solid var(--border2);color:var(--text);font-family:var(--font-body);font-weight:600;font-size:.85rem;padding:12px 28px;border-radius:100px;cursor:pointer;transition:var(--transition);margin-top:.5rem}
+.btn-reiniciar:hover{background:var(--surface2)}
+
+/* ---- FOOTER ---- */
+.footer-rainbow-bar{height:4px;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--cyan),var(--blue),var(--violet),var(--magenta))}
+footer{padding:3.5rem 5vw;text-align:center;color:var(--muted);font-size:.85rem}
+.footer-logo{font-family:var(--font-body);font-weight:800;font-size:1.1rem;color:var(--text);margin-bottom:.75rem}
+.footer-quote{margin-top:.75rem;font-size:.78rem;opacity:.5;font-family:var(--font-serif);font-style:italic}
+
+/* ---- REVEAL ---- */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){.sobre-layout{grid-template-columns:1fr;gap:3rem}.plus-msg-inner{flex-direction:column;gap:1.5rem}.plus-msg-symbol{font-size:5rem}.mural-bottom{flex-direction:column;align-items:flex-start}}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}section{padding:80px 0}#plus{overflow:visible}.plus-bg-text{display:none}.hero-stats{gap:1rem}.hs-sep{display:none}.palette-tab{top:auto;bottom:5rem;transform:none}}
+@media(max-width:480px){.sobre-cards{grid-template-columns:1fr 1fr}.flags-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.quiz-card{padding:1.75rem 1.25rem}.mural-form-card{padding:1.5rem}}
+  </style>
 </head>
 <body>
 
-  <!-- ===================== NAV ===================== -->
-  <nav id="mainNav">
-    <a class="nav-logo" href="#hero">🏳️‍🌈 <span>Orgulho</span> LGBTQIAPN+</a>
-    <div class="nav-links">
-      <a href="#sobre">Sobre</a>
-      <a href="#curiosidades">Curiosidades</a>
-      <a href="#sigla">A Sigla</a>
-      <a href="#plus" class="nav-highlight">O "+"</a>
-      <a href="#bandeiras">Bandeiras</a>
-      <a href="#sorteio" class="nav-cta">🎉 Sorteio</a>
+<!-- ============ SELETOR DE PALETA ============ -->
+<div class="palette-tab" id="paletteTab">
+  <div class="palette-panel" id="palettePanel">
+    <div class="palette-panel-title">Paleta de cores</div>
+    <div class="palette-option active" onclick="setPalette('default',this)">
+      <div class="palette-dots"><div class="palette-dot" style="background:#e040fb"></div><div class="palette-dot" style="background:#ffca28"></div><div class="palette-dot" style="background:#7c4dff"></div></div>
+      <span class="palette-name">Noite Violeta</span>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#sobre" onclick="closeMobile()">Sobre</a>
-    <a href="#curiosidades" onclick="closeMobile()">Curiosidades</a>
-    <a href="#sigla" onclick="closeMobile()">A Sigla</a>
-    <a href="#plus" onclick="closeMobile()">O "+"</a>
-    <a href="#bandeiras" onclick="closeMobile()">Bandeiras</a>
-    <a href="#sorteio" onclick="closeMobile()" class="mobile-cta">🎉 Participar do Sorteio</a>
+    <div class="palette-option" onclick="setPalette('tropical',this)">
+      <div class="palette-dots"><div class="palette-dot" style="background:#00e5ff"></div><div class="palette-dot" style="background:#eeff41"></div><div class="palette-dot" style="background:#ff4081"></div></div>
+      <span class="palette-name">Aurora Tropical</span>
+    </div>
+    <div class="palette-option" onclick="setPalette('fire',this)">
+      <div class="palette-dots"><div class="palette-dot" style="background:#ff1744"></div><div class="palette-dot" style="background:#ff6d00"></div><div class="palette-dot" style="background:#ffea00"></div></div>
+      <span class="palette-name">Fogo do Orgulho</span>
+    </div>
+    <div class="palette-option" onclick="setPalette('pastel',this)">
+      <div class="palette-dots"><div class="palette-dot" style="background:#f48fb1"></div><div class="palette-dot" style="background:#90caf9"></div><div class="palette-dot" style="background:#ce93d8"></div></div>
+      <span class="palette-name">Céu Pastel</span>
+    </div>
+    <div class="palette-option" onclick="setPalette('nature',this)">
+      <div class="palette-dots"><div class="palette-dot" style="background:#69f0ae"></div><div class="palette-dot" style="background:#fff176"></div><div class="palette-dot" style="background:#f06292"></div></div>
+      <span class="palette-name">Florescer</span>
+    </div>
   </div>
+  <button class="palette-toggle-btn" onclick="togglePalette()" aria-label="Trocar paleta">🎨 Paleta</button>
+</div>
 
-  <!-- ===================== HERO ===================== -->
-  <section id="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-orb orb1"></div>
-    <div class="hero-orb orb2"></div>
-    <div class="hero-orb orb3"></div>
-    <div class="hero-inner">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-dot"></span>
-        Junho · Mês do Orgulho LGBTQIAPN+
-        <span class="eyebrow-dot"></span>
+<!-- ============ NAV ============ -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#hero">🏳️‍🌈 <span>Orgulho</span> LGBTQIAPN+</a>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#curiosidades">Curiosidades</a>
+    <a href="#sigla">A Sigla</a>
+    <a href="#plus">O "+"</a>
+    <a href="#bandeiras">Bandeiras</a>
+    <a href="#mural">Mural</a>
+    <a href="#ongs">ONGs</a>
+    <a href="#direitos">Direitos</a>
+    <a href="#quiz">Quiz</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre" onclick="closeMobile()">Sobre</a>
+  <a href="#curiosidades" onclick="closeMobile()">Curiosidades</a>
+  <a href="#sigla" onclick="closeMobile()">A Sigla</a>
+  <a href="#plus" onclick="closeMobile()">O "+"</a>
+  <a href="#bandeiras" onclick="closeMobile()">Bandeiras</a>
+  <a href="#mural" onclick="closeMobile()">Mural</a>
+  <a href="#ongs" onclick="closeMobile()">ONGs</a>
+  <a href="#direitos" onclick="closeMobile()">Direitos</a>
+  <a href="#quiz" onclick="closeMobile()">Quiz</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span> Junho · Mês do Orgulho LGBTQIAPN+ <span class="eyebrow-dot"></span></div>
+    <h1 class="hero-title">
+      <span class="ht-line line1">JUNHO</span>
+      <span class="ht-line line2">DO</span>
+      <span class="ht-line line3 rainbow-text">ORGULHO</span>
+    </h1>
+    <p class="hero-desc">Um mês inteiro dedicado à celebração, à visibilidade<br>e à luta pelos direitos de pessoas LGBTQIAPN+<br>ao redor do mundo.</p>
+    <div class="hero-actions">
+      <a href="#sobre" class="btn-primary">Explorar</a>
+      <a href="#mural" class="btn-outline">💬 Mural de Desabafos</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><strong>1969</strong><span>Stonewall</span></div>
+      <div class="hs-sep"></div>
+      <div class="hs"><strong>+170</strong><span>países</span></div>
+      <div class="hs-sep"></div>
+      <div class="hs"><strong>3M+</strong><span>Parada SP</span></div>
+      <div class="hs-sep"></div>
+      <div class="hs"><strong>50+</strong><span>identidades</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">scroll ↓</div>
+</section>
+
+<!-- ============ FRASES ============ -->
+<section id="frases">
+  <div class="wrapper">
+    <div class="section-header reveal" style="text-align:center">
+      <p class="tag" style="margin:0 auto 1rem">Inspire-se</p>
+      <h2 class="sec-title">Frases do<br><em>Orgulho</em></h2>
+    </div>
+    <div class="frase-box">
+      <div class="frase-display">
+        <div class="frase-glow"></div>
+        <div class="frase-emoji" id="fraseEmoji">🌈</div>
+        <p class="frase-text" id="fraseTexto">"Ser quem você é, com orgulho, é o ato mais revolucionário que existe."</p>
       </div>
-      <h1 class="hero-title">
-        <span class="ht-line line1">JUNHO</span>
-        <span class="ht-line line2">DO</span>
-        <span class="ht-line line3 rainbow-text">ORGULHO</span>
-      </h1>
-      <p class="hero-desc">
-        Um mês inteiro dedicado à celebração, à visibilidade<br>
-        e à luta pelos direitos de pessoas LGBTQIAPN+<br>
-        ao redor do mundo.
-      </p>
-      <div class="hero-actions">
-        <a href="#sobre" class="btn-primary">Explorar</a>
-        <a href="#sorteio" class="btn-outline">🎉 Participar do Sorteio</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hs"><strong>1969</strong><span>Stonewall</span></div>
-        <div class="hs-sep"></div>
-        <div class="hs"><strong>+170</strong><span>países</span></div>
-        <div class="hs-sep"></div>
-        <div class="hs"><strong>3M+</strong><span>Parada SP</span></div>
-        <div class="hs-sep"></div>
-        <div class="hs"><strong>50+</strong><span>identidades</span></div>
+      <div style="text-align:center">
+        <button class="btn-frase" onclick="novaFrase()">✨ Nova frase de orgulho</button>
       </div>
     </div>
-    <div class="hero-scroll-hint">scroll ↓</div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== SOBRE ===================== -->
-  <section id="sobre">
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="tag">O que é</p>
-        <h2 class="sec-title">O Movimento<br><em>LGBTQIAPN+</em></h2>
+<!-- ============ SOBRE ============ -->
+<section id="sobre">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">O que é</p>
+      <h2 class="sec-title">O Movimento<br><em>LGBTQIAPN+</em></h2>
+    </div>
+    <div class="sobre-layout">
+      <div class="sobre-text reveal">
+        <p>O movimento LGBTQIAPN+ é um conjunto de lutas sociais, políticas e culturais que busca garantir direitos, respeito e visibilidade para pessoas lésbicas, gays, bissexuais, transgêneras, queers, intersexuais, assexuais, agênero, pansexuais, não-binárias e todos os grupos representados pelo "+".</p>
+        <p>Surgiu de forma mais organizada após os <strong>Distúrbios de Stonewall</strong>, em junho de 1969, em Nova York, quando frequentadores do bar Stonewall Inn resistiram a uma batida policial — dando origem ao que hoje conhecemos como o Mês do Orgulho.</p>
+        <p>No Brasil, a <strong>Parada LGBT+ de São Paulo</strong> é uma das maiores do mundo, reunindo milhões de pessoas anualmente na Avenida Paulista.</p>
+        <blockquote>"Nenhum de nós é livre quando algum de nós está acorrentado." <cite>— Audre Lorde</cite></blockquote>
       </div>
-      <div class="sobre-layout">
-        <div class="sobre-text reveal">
-          <p>O movimento LGBTQIAPN+ é um conjunto de lutas sociais, políticas e culturais que busca garantir direitos, respeito e visibilidade para pessoas lésbicas, gays, bissexuais, transgêneras, queers, intersexuais, assexuais, agênero, pansexuais, não-binárias e todos os grupos representados pelo "+".</p>
-          <p>Surgiu de forma mais organizada após os <strong>Distúrbios de Stonewall</strong>, em junho de 1969, em Nova York, quando frequentadores do bar Stonewall Inn resistiram a uma batida policial — dando origem ao que hoje conhecemos como o Mês do Orgulho.</p>
-          <p>No Brasil, a <strong>Parada LGBT+ de São Paulo</strong> é uma das maiores do mundo, reunindo milhões de pessoas anualmente na Avenida Paulista.</p>
-          <blockquote>"Nenhum de nós é livre quando algum de nós está acorrentado." <cite>— Audre Lorde</cite></blockquote>
-        </div>
-        <div class="sobre-cards reveal">
-          <div class="stat-card sc-pink"><div class="sc-num">1969</div><div class="sc-label">Revolta de Stonewall — o início</div></div>
-          <div class="stat-card sc-yellow"><div class="sc-num">+170</div><div class="sc-label">países com eventos de Orgulho</div></div>
-          <div class="stat-card sc-cyan"><div class="sc-num">3M+</div><div class="sc-label">pessoas na Parada SP (recorde)</div></div>
-          <div class="stat-card sc-green"><div class="sc-num">50+</div><div class="sc-label">identidades no espectro</div></div>
-        </div>
+      <div class="sobre-cards reveal">
+        <div class="stat-card sc-pink"><div class="sc-num">1969</div><div class="sc-label">Revolta de Stonewall — o início</div></div>
+        <div class="stat-card sc-yellow"><div class="sc-num">+170</div><div class="sc-label">países com eventos de Orgulho</div></div>
+        <div class="stat-card sc-cyan"><div class="sc-num">3M+</div><div class="sc-label">pessoas na Parada SP (recorde)</div></div>
+        <div class="stat-card sc-green"><div class="sc-num">50+</div><div class="sc-label">identidades no espectro</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== CURIOSIDADES ===================== -->
-  <section id="curiosidades">
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="tag">Sabia que…</p>
-        <h2 class="sec-title">Curiosidades<br><em>sobre o Movimento</em></h2>
-        <p class="sec-lead">Fatos históricos, culturais e sociais que marcaram a trajetória da comunidade.</p>
-      </div>
-      <div class="curio-grid">
-        <div class="curio-card reveal" data-color="pink">
-          <span class="curio-icon">🌈</span>
-          <h3>A Bandeira Arco-Íris</h3>
-          <p>Criada em 1978 por Gilbert Baker, a pedido de Harvey Milk. Originalmente tinha 8 listras — incluindo rosa-quente e turquesa. Por questões de produção, ficou com as 6 listras que conhecemos hoje.</p>
-        </div>
-        <div class="curio-card reveal" data-color="yellow">
-          <span class="curio-icon">⚡</span>
-          <h3>Stonewall, 1969</h3>
-          <p>Na madrugada de 28 de junho de 1969, clientes do Stonewall Inn resistiram a uma batida policial. A resistência durou dias e é o marco fundador do movimento moderno de direitos LGBTQIAPN+.</p>
-        </div>
-        <div class="curio-card reveal" data-color="cyan">
-          <span class="curio-icon">🇧🇷</span>
-          <h3>Brasil Pioneiro</h3>
-          <p>O Brasil foi um dos primeiros países a reconhecer a união civil entre pessoas do mesmo sexo, em 2011, pelo STF. Em 2013, o CNJ estendeu o direito ao casamento civil igualitário.</p>
-        </div>
-        <div class="curio-card reveal" data-color="violet">
-          <span class="curio-icon">🏥</span>
-          <h3>Despatologização</h3>
-          <p>A OMS retirou a homossexualidade da lista de doenças mentais em 1990. Em 2018, a transexualidade também deixou de ser classificada como transtorno mental na CID-11.</p>
-        </div>
-        <div class="curio-card reveal" data-color="pink">
-          <span class="curio-icon">🎨</span>
-          <h3>O Triângulo Rosa</h3>
-          <p>Na Segunda Guerra Mundial, homossexuais eram obrigados a usar triângulos rosa nos campos de concentração. O movimento ressignificou o símbolo como forma de memória e resistência.</p>
-        </div>
-        <div class="curio-card reveal" data-color="green">
-          <span class="curio-icon">💜</span>
-          <h3>A Letra "Q" dupla</h3>
-          <p>O "Q" pode representar "Queer" — um termo guarda-chuva de resistência — ou "Questionando", acolhendo quem ainda explora sua identidade sem pressa de se encaixar em rótulos.</p>
-        </div>
-      </div>
+<!-- ============ CURIOSIDADES ============ -->
+<section id="curiosidades">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">Sabia que…</p>
+      <h2 class="sec-title">Curiosidades<br><em>sobre o Movimento</em></h2>
+      <p class="sec-lead">Fatos históricos, culturais e sociais que marcaram a trajetória da comunidade.</p>
     </div>
-  </section>
-
-  <!-- ===================== SIGLA ===================== -->
-  <section id="sigla">
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="tag">Identidades &amp; Representação</p>
-        <h2 class="sec-title">O que significa<br><em>cada letra?</em></h2>
-        <p class="sec-lead">Cada letra representa uma identidade com histórias, lutas e especificidades próprias.</p>
-      </div>
-      <div class="sigla-grid">
-        <div class="letter-card reveal lc-l"><div class="lb">L</div><div class="li"><h4>Lésbica</h4><p>Mulheres (cis ou trans) atraídas por outras mulheres. O termo tem raízes na ilha grega de Lesbos, terra da poetisa Safo.</p></div></div>
-        <div class="letter-card reveal lc-g"><div class="lb">G</div><div class="li"><h4>Gay</h4><p>Homens (cis ou trans) atraídos por outros homens. Também usado de forma ampla para descrever pessoas homossexuais em geral.</p></div></div>
-        <div class="letter-card reveal lc-b"><div class="lb">B</div><div class="li"><h4>Bissexual</h4><p>Pessoas que sentem atração por mais de um gênero. Atração não se confunde com comportamento — a identidade existe independentemente das relações.</p></div></div>
-        <div class="letter-card reveal lc-t"><div class="lb">T</div><div class="li"><h4>Trans / Travesti</h4><p>Pessoas cuja identidade de gênero não corresponde ao sexo atribuído ao nascer. Inclui mulheres trans, homens trans e travestis.</p></div></div>
-        <div class="letter-card reveal lc-q"><div class="lb">Q</div><div class="li"><h4>Queer / Questionando</h4><p>Queer é um termo guarda-chuva para quem não se encaixa nas normas hegemônicas. "Questionando" acolhe quem ainda explora sua identidade.</p></div></div>
-        <div class="letter-card reveal lc-i"><div class="lb">I</div><div class="li"><h4>Intersexo</h4><p>Pessoas que nascem com características físicas que não se encaixam nas definições médicas típicas de masculino ou feminino.</p></div></div>
-        <div class="letter-card reveal lc-a"><div class="lb">A</div><div class="li"><h4>Assexual / Agênero / Aliado</h4><p>Assexual: pouca ou nenhuma atração sexual. Agênero: sem identificação com qualquer gênero. Aliado: apoiadores ativos da comunidade.</p></div></div>
-        <div class="letter-card reveal lc-p"><div class="lb">P</div><div class="li"><h4>Pansexual</h4><p>Atração por pessoas independentemente do gênero. O gênero não é fator determinante da atração — pessoas de todos os gêneros são potencialmente atraentes.</p></div></div>
-        <div class="letter-card reveal lc-n"><div class="lb">N</div><div class="li"><h4>Não-Binário</h4><p>Identidades de gênero fora da divisão binária masculino/feminino. Inclui agênero, bigênero, fluido de gênero e outras experiências não-conformes.</p></div></div>
-      </div>
+    <div class="curio-grid">
+      <div class="curio-card reveal" data-color="pink"><span class="curio-icon">🌈</span><h3>A Bandeira Arco-Íris</h3><p>Criada em 1978 por Gilbert Baker, a pedido de Harvey Milk. Originalmente tinha 8 listras — incluindo rosa-quente e turquesa. Por questões de produção, ficou com as 6 listras que conhecemos hoje.</p></div>
+      <div class="curio-card reveal" data-color="yellow"><span class="curio-icon">⚡</span><h3>Stonewall, 1969</h3><p>Na madrugada de 28 de junho de 1969, clientes do Stonewall Inn resistiram a uma batida policial. A resistência durou dias e é o marco fundador do movimento moderno de direitos LGBTQIAPN+.</p></div>
+      <div class="curio-card reveal" data-color="cyan"><span class="curio-icon">🇧🇷</span><h3>Brasil Pioneiro</h3><p>O Brasil foi um dos primeiros países a reconhecer a união civil entre pessoas do mesmo sexo, em 2011, pelo STF. Em 2013, o CNJ estendeu o direito ao casamento civil igualitário.</p></div>
+      <div class="curio-card reveal" data-color="violet"><span class="curio-icon">🏥</span><h3>Despatologização</h3><p>A OMS retirou a homossexualidade da lista de doenças mentais em 1990. Em 2018, a transexualidade também deixou de ser classificada como transtorno mental na CID-11.</p></div>
+      <div class="curio-card reveal" data-color="pink"><span class="curio-icon">🎨</span><h3>O Triângulo Rosa</h3><p>Na Segunda Guerra Mundial, homossexuais eram obrigados a usar triângulos rosa nos campos de concentração. O movimento ressignificou o símbolo como forma de memória e resistência.</p></div>
+      <div class="curio-card reveal" data-color="green"><span class="curio-icon">💜</span><h3>A Letra "Q" dupla</h3><p>O "Q" pode representar "Queer" — um termo guarda-chuva de resistência — ou "Questionando", acolhendo quem ainda explora sua identidade sem pressa de se encaixar em rótulos.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== PLUS — PÁGINA DEDICADA ===================== -->
-  <section id="plus">
-    <div class="plus-bg-text">+</div>
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="tag">O símbolo mais inclusivo</p>
-        <h2 class="sec-title plus-title">O que significa<br><em class="plus-em">o "+"?</em></h2>
-        <p class="sec-lead">O "+" é um compromisso de abertura — reconhecimento de que a diversidade humana é maior do que qualquer sigla pode conter. Representa todas as identidades que ainda não têm letra própria, que surgiram depois, ou que existem nos espectros entre categorias já nomeadas.</p>
-      </div>
+<!-- ============ SIGLA ============ -->
+<section id="sigla">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">Identidades &amp; Representação</p>
+      <h2 class="sec-title">O que significa<br><em>cada letra?</em></h2>
+      <p class="sec-lead">Cada letra representa uma identidade com histórias, lutas e especificidades próprias.</p>
+    </div>
+    <div class="sigla-grid">
+      <div class="letter-card reveal lc-l"><div class="lb">L</div><div class="li"><h4>Lésbica</h4><p>Mulheres (cis ou trans) atraídas por outras mulheres. O termo tem raízes na ilha grega de Lesbos, terra da poetisa Safo.</p></div></div>
+      <div class="letter-card reveal lc-g"><div class="lb">G</div><div class="li"><h4>Gay</h4><p>Homens (cis ou trans) atraídos por outros homens. Também usado de forma ampla para descrever pessoas homossexuais em geral.</p></div></div>
+      <div class="letter-card reveal lc-b"><div class="lb">B</div><div class="li"><h4>Bissexual</h4><p>Pessoas que sentem atração por mais de um gênero. Atração não se confunde com comportamento — a identidade existe independentemente das relações.</p></div></div>
+      <div class="letter-card reveal lc-t"><div class="lb">T</div><div class="li"><h4>Trans / Travesti</h4><p>Pessoas cuja identidade de gênero não corresponde ao sexo atribuído ao nascer. Inclui mulheres trans, homens trans e travestis.</p></div></div>
+      <div class="letter-card reveal lc-q"><div class="lb">Q</div><div class="li"><h4>Queer / Questionando</h4><p>Queer é um termo guarda-chuva para quem não se encaixa nas normas hegemônicas. "Questionando" acolhe quem ainda explora sua identidade.</p></div></div>
+      <div class="letter-card reveal lc-i"><div class="lb">I</div><div class="li"><h4>Intersexo</h4><p>Pessoas que nascem com características físicas que não se encaixam nas definições médicas típicas de masculino ou feminino.</p></div></div>
+      <div class="letter-card reveal lc-a"><div class="lb">A</div><div class="li"><h4>Assexual / Agênero / Aliado</h4><p>Assexual: pouca ou nenhuma atração sexual. Agênero: sem identificação com qualquer gênero. Aliado: apoiadores ativos da comunidade.</p></div></div>
+      <div class="letter-card reveal lc-p"><div class="lb">P</div><div class="li"><h4>Pansexual</h4><p>Atração por pessoas independentemente do gênero. O gênero não é fator determinante da atração — pessoas de todos os gêneros são potencialmente atraentes.</p></div></div>
+      <div class="letter-card reveal lc-n"><div class="lb">N</div><div class="li"><h4>Não-Binário</h4><p>Identidades de gênero fora da divisão binária masculino/feminino. Inclui agênero, bigênero, fluido de gênero e outras experiências não-conformes.</p></div></div>
+    </div>
+  </div>
+</section>
 
-      <!-- Grade de identidades do + -->
-      <div class="plus-identities">
-        <div class="plus-card reveal" data-cat="gênero">
-          <div class="plus-flag flag-genderfluid-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Gênero</span>
-            <h3>Gênero-fluido</h3>
-            <p>Pessoas cuja identidade de gênero varia ao longo do tempo ou dependendo da situação. Podem se identificar como homem, mulher, ambos ou nenhum — a fluidez é a essência.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="orientação">
-          <div class="plus-flag flag-polysexual-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Orientação</span>
-            <h3>Polissexual</h3>
-            <p>Atração por múltiplos gêneros, mas não necessariamente todos. Diferente de pansexual — a polissexualidade reconhece que alguns gêneros podem não fazer parte da atração.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="espectro">
-          <div class="plus-flag flag-demi-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Espectro</span>
-            <h3>Demissexual</h3>
-            <p>Pertence ao espectro assexual. Pessoas demissexuais só sentem atração sexual após estabelecer um vínculo emocional profundo. A conexão afetiva é condição para o desejo.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="gênero">
-          <div class="plus-flag flag-bigender-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Gênero</span>
-            <h3>Bigênero</h3>
-            <p>Pessoas que se identificam com dois gêneros simultaneamente ou que alternam entre eles — homem e mulher ao mesmo tempo, ou qualquer combinação de gêneros.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="orientação">
-          <div class="plus-flag flag-aromantic-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Orientação</span>
-            <h3>Arromântico</h3>
-            <p>Pessoas que sentem pouca ou nenhuma atração romântica, independentemente da orientação sexual. Podem sentir atração sexual, mas sem o componente romântico.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="espectro">
-          <div class="plus-flag flag-grey-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Espectro</span>
-            <h3>Graysexual</h3>
-            <p>Situado entre assexual e sexualmente ativo — pessoas que raramente sentem atração sexual ou apenas em circunstâncias muito específicas. A "zona cinza" da sexualidade.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="gênero">
-          <div class="plus-flag flag-neutrois-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Gênero</span>
-            <h3>Neutrois / Nulugênero</h3>
-            <p>Identidade de gênero neutra ou nula. Diferentes de agênero — alguns neutrois sentem que possuem um gênero neutro, além da dicotomia binária.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="orientação">
-          <div class="plus-flag flag-sapio-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Orientação</span>
-            <h3>Sapiossexual</h3>
-            <p>Pessoas cuja atração sexual é primariamente despertada pela inteligência. Pode se combinar com outras orientações — um sapiossexual pode ser gay, bissexual, etc.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="espectro">
-          <div class="plus-flag flag-queerplatonic-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Espectro</span>
-            <h3>Queerplatônico</h3>
-            <p>Relacionamentos que transcendem a amizade convencional sem serem tipicamente românticos. Um vínculo profundo que existe fora das categorias padrão.</p>
-          </div>
-        </div>
-        <div class="plus-card reveal" data-cat="gênero">
-          <div class="plus-flag flag-xenogender-mini"></div>
-          <div class="plus-card-body">
-            <span class="plus-tag">Gênero</span>
-            <h3>Xenogênero</h3>
-            <p>Identidades de gênero que usam conceitos não-humanos para se descrever — como elementos da natureza, cores, emoções. Forma de expressão de gênero além do humano convencional.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bandeiras do + -->
-      <div class="plus-flags-section reveal">
-        <h3 class="plus-flags-title">Bandeiras do <span class="rainbow-text">+</span></h3>
-        <p class="plus-flags-desc">Cada identidade do "+" tem sua própria bandeira, com cores e símbolos que carregam significados únicos.</p>
-        <div class="plus-flags-grid">
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#ff76a4"></div>
-              <div class="pf-stripe" style="background:#fff"></div>
-              <div class="pf-stripe" style="background:#be18d6"></div>
-              <div class="pf-stripe" style="background:#000"></div>
-              <div class="pf-stripe" style="background:#c4e2ff"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Gênero-fluido</div><div class="pflag-desc">Rosa, branco, roxo, preto e azul — a fluidez entre todos os gêneros.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#f714ba; flex:2"></div>
-              <div class="pf-stripe" style="background:#01d66a; flex:1"></div>
-              <div class="pf-stripe" style="background:#1594f6; flex:2"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Polissexual</div><div class="pflag-desc">Rosa, verde e azul — múltiplos gêneros, mas não necessariamente todos.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual" style="background:#000; position:relative; display:flex; align-items:center; justify-content:center;">
-              <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:55px 40px 55px 0;border-color:transparent #fff transparent transparent;"></div>
-              <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:55px 28px 55px 0;border-color:transparent #808080 transparent transparent;"></div>
-              <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:55px 18px 55px 0;border-color:transparent #800080 transparent transparent;"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Demissexual</div><div class="pflag-desc">Derivada da assexual — o vínculo emocional como base da atração.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#f9a8d4; flex:2"></div>
-              <div class="pf-stripe" style="background:#fff; flex:1"></div>
-              <div class="pf-stripe" style="background:#9b59b6; flex:1"></div>
-              <div class="pf-stripe" style="background:#000; flex:1"></div>
-              <div class="pf-stripe" style="background:#9b59b6; flex:1"></div>
-              <div class="pf-stripe" style="background:#fff; flex:1"></div>
-              <div class="pf-stripe" style="background:#f9a8d4; flex:2"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Bigênero</div><div class="pflag-desc">Rosa, branco, roxo e preto — duas identidades em harmonia.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#3d9140"></div>
-              <div class="pf-stripe" style="background:#a8d379"></div>
-              <div class="pf-stripe" style="background:#fff"></div>
-              <div class="pf-stripe" style="background:#a9a9a9"></div>
-              <div class="pf-stripe" style="background:#000"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Arromântico</div><div class="pflag-desc">Verdes, branco, cinza e preto — espectro da atração romântica.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#000; flex:2"></div>
-              <div class="pf-stripe" style="background:#a9a9a9"></div>
-              <div class="pf-stripe" style="background:#fff; flex:2"></div>
-              <div class="pf-stripe" style="background:#a9a9a9"></div>
-              <div class="pf-stripe" style="background:#000; flex:2"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Graysexual</div><div class="pflag-desc">Preto, cinza e branco — a zona entre assexual e sexual.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#fff"></div>
-              <div class="pf-stripe" style="background:#9bc3e5"></div>
-              <div class="pf-stripe" style="background:#2d6e98"></div>
-              <div class="pf-stripe" style="background:#9bc3e5"></div>
-              <div class="pf-stripe" style="background:#fff"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Neutrois</div><div class="pflag-desc">Branco e azuis — gênero neutro além do binário.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual" style="background: linear-gradient(135deg, #ff69b4, #ffd700, #87ceeb, #da70d6);">
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Xenogênero</div><div class="pflag-desc">Espectro colorido — identidades além do humano convencional.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#000"></div>
-              <div class="pf-stripe" style="background:#a3a3a3"></div>
-              <div class="pf-stripe" style="background:#fff"></div>
-              <div class="pf-stripe" style="background:#69359c"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Sapiossexual</div><div class="pflag-desc">Derivada da assexual — atração baseada na inteligência.</div></div>
-          </div>
-          <div class="pflag-card reveal">
-            <div class="pflag-visual">
-              <div class="pf-stripe" style="background:#000050"></div>
-              <div class="pf-stripe" style="background:#2255a4"></div>
-              <div class="pf-stripe" style="background:#fff"></div>
-              <div class="pf-stripe" style="background:#2255a4"></div>
-              <div class="pf-stripe" style="background:#000050"></div>
-            </div>
-            <div class="pflag-info"><div class="pflag-name">Queerplatônico</div><div class="pflag-desc">Azul e branco — vínculos além das categorias convencionais.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mensagem do + -->
-      <div class="plus-message reveal">
-        <div class="plus-msg-inner">
-          <div class="plus-msg-symbol">+</div>
-          <div class="plus-msg-text">
-            <h3>O "+" é um abraço aberto</h3>
-            <p>Cada nova letra ou símbolo representa uma conquista de visibilidade. O "+" garante que ninguém fique de fora — identidades sem nome, culturas com nomenclaturas próprias e pessoas em autodescoberta são acolhidas. <strong>É o símbolo da incompletude propositiva: sempre haverá espaço para mais.</strong></p>
-          </div>
+<!-- ============ PLUS ============ -->
+<section id="plus">
+  <div class="plus-bg-text">+</div>
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">O símbolo mais inclusivo</p>
+      <h2 class="sec-title plus-title">O que significa<br><em class="plus-em">o "+"?</em></h2>
+      <p class="sec-lead">O "+" é um compromisso de abertura — reconhecimento de que a diversidade humana é maior do que qualquer sigla pode conter.</p>
+    </div>
+    <div class="plus-identities">
+      <div class="plus-card reveal" data-cat="gênero"><div class="plus-flag flag-genderfluid-mini"></div><div class="plus-card-body"><span class="plus-tag">Gênero</span><h3>Gênero-fluido</h3><p>Pessoas cuja identidade de gênero varia ao longo do tempo ou dependendo da situação.</p></div></div>
+      <div class="plus-card reveal" data-cat="orientação"><div class="plus-flag flag-polysexual-mini"></div><div class="plus-card-body"><span class="plus-tag">Orientação</span><h3>Polissexual</h3><p>Atração por múltiplos gêneros, mas não necessariamente todos. Diferente de pansexual.</p></div></div>
+      <div class="plus-card reveal" data-cat="espectro"><div class="plus-flag flag-demi-mini"></div><div class="plus-card-body"><span class="plus-tag">Espectro</span><h3>Demissexual</h3><p>Pessoas demissexuais só sentem atração sexual após estabelecer um vínculo emocional profundo.</p></div></div>
+      <div class="plus-card reveal" data-cat="gênero"><div class="plus-flag flag-bigender-mini"></div><div class="plus-card-body"><span class="plus-tag">Gênero</span><h3>Bigênero</h3><p>Pessoas que se identificam com dois gêneros simultaneamente ou que alternam entre eles.</p></div></div>
+      <div class="plus-card reveal" data-cat="orientação"><div class="plus-flag flag-aromantic-mini"></div><div class="plus-card-body"><span class="plus-tag">Orientação</span><h3>Arromântico</h3><p>Pessoas que sentem pouca ou nenhuma atração romântica, independentemente da orientação sexual.</p></div></div>
+      <div class="plus-card reveal" data-cat="espectro"><div class="plus-flag flag-grey-mini"></div><div class="plus-card-body"><span class="plus-tag">Espectro</span><h3>Graysexual</h3><p>Entre assexual e sexualmente ativo — pessoas que raramente sentem atração sexual.</p></div></div>
+    </div>
+    <div class="plus-message reveal">
+      <div class="plus-msg-inner">
+        <div class="plus-msg-symbol">+</div>
+        <div class="plus-msg-text">
+          <h3>O "+" é um abraço aberto</h3>
+          <p>Cada nova letra ou símbolo representa uma conquista de visibilidade. O "+" garante que ninguém fique de fora — identidades sem nome, culturas com nomenclaturas próprias e pessoas em autodescoberta são acolhidas. <strong>É o símbolo da incompletude propositiva: sempre haverá espaço para mais.</strong></p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== BANDEIRAS ===================== -->
-  <section id="bandeiras">
-    <div class="wrapper">
-      <div class="section-header reveal">
-        <p class="tag">Símbolos de Identidade</p>
-        <h2 class="sec-title">Bandeiras da<br><em>Comunidade</em></h2>
-        <p class="sec-lead">Cada bandeira é um símbolo de identidade, resistência e pertencimento.</p>
+<!-- ============ BANDEIRAS ============ -->
+<section id="bandeiras">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">Símbolos de Identidade</p>
+      <h2 class="sec-title">Bandeiras da<br><em>Comunidade</em></h2>
+      <p class="sec-lead">Cada bandeira é um símbolo de identidade, resistência e pertencimento.</p>
+    </div>
+    <div class="flags-grid">
+      <div class="flag-card reveal"><div class="flag-vis flag-arcoiris"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div><div class="stripe s6"></div></div><div class="flag-info"><div class="fn">🏳️‍🌈 Arco-Íris (Orgulho)</div><div class="fd">6 listras: vida, cura, sol, natureza, harmonia e espírito.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-trans"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div></div><div class="flag-info"><div class="fn">⚧ Transgênero</div><div class="fd">Azul, rosa e branco — meninos, meninas e transição.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-bi"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div></div><div class="flag-info"><div class="fn">💗 Bissexual</div><div class="fd">Rosa, lavanda e azul — dimensões da atração bissexual.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-pan"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div></div><div class="flag-info"><div class="fn">💛 Pansexual</div><div class="fd">Rosa, amarelo e azul — atração por todos os gêneros.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-aroma"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div></div><div class="flag-info"><div class="fn">💚 Arromântico</div><div class="fd">Verdes e tons neutros — espectro da atração romântica.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-assex"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div></div><div class="flag-info"><div class="fn">🖤 Assexual</div><div class="fd">Preto, cinza, branco e roxo — da assexualidade à comunidade.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-nb"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div></div><div class="flag-info"><div class="fn">💛 Não-Binário</div><div class="fd">Amarelo, branco, roxo e preto — fora do binário de gênero.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-inter"><div class="inter-circle"></div></div><div class="flag-info"><div class="fn">🟡 Intersexo</div><div class="fd">Amarelo e roxo. O círculo representa completude e integridade.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-gender"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div></div><div class="flag-info"><div class="fn">🌸 Gênero-fluido</div><div class="fd">Rosa, branco, roxo, preto e azul — fluidez entre gêneros.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-poly"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div></div><div class="flag-info"><div class="fn">💚 Polissexual</div><div class="fd">Rosa, verde e azul — múltiplos gêneros.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-demi"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div></div><div class="flag-info"><div class="fn">🤍 Demissexual</div><div class="fd">Derivada da assexual — vínculo emocional como base da atração.</div></div></div>
+      <div class="flag-card reveal"><div class="flag-vis flag-lesbian"><div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div></div><div class="flag-info"><div class="fn">🧡 Lésbica</div><div class="fd">Tons de laranja, branco e rosa — identidade lésbica moderna.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MURAL ============ -->
+<section id="mural">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">Espaço seguro</p>
+      <h2 class="sec-title">Mural de<br><em>Desabafos</em></h2>
+      <p class="sec-lead">Um espaço anônimo e seguro para compartilhar sentimentos, histórias e reflexões. Você não está sozinhx.</p>
+    </div>
+    <div class="mural-container">
+      <div class="mural-form-card reveal">
+        <h3>Compartilhe anonimamente 💜</h3>
+        <p>Seu desabafo é anônimo e será publicado aqui para a comunidade ler e reagir com carinho.</p>
+        <textarea class="mural-textarea" id="muralTexto" placeholder="Escreva o que estiver no coração... pode ser uma conquista, um sentimento, uma mensagem de apoio ou um pedido de força..." maxlength="500"></textarea>
+        <div class="mural-bottom">
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <span style="font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Escolha um emoji</span>
+            <div class="mural-emoji-select" id="emojiSelect">
+              <button class="mural-emoji-btn sel" data-e="🌈" onclick="selEmoji(this)">🌈</button>
+              <button class="mural-emoji-btn" data-e="💜" onclick="selEmoji(this)">💜</button>
+              <button class="mural-emoji-btn" data-e="💪" onclick="selEmoji(this)">💪</button>
+              <button class="mural-emoji-btn" data-e="🌻" onclick="selEmoji(this)">🌻</button>
+              <button class="mural-emoji-btn" data-e="✨" onclick="selEmoji(this)">✨</button>
+              <button class="mural-emoji-btn" data-e="🕊️" onclick="selEmoji(this)">🕊️</button>
+              <button class="mural-emoji-btn" data-e="💖" onclick="selEmoji(this)">💖</button>
+              <button class="mural-emoji-btn" data-e="🔥" onclick="selEmoji(this)">🔥</button>
+            </div>
+          </div>
+          <button class="btn-enviar" onclick="publicarDesabafo()">Publicar anonimamente →</button>
+        </div>
       </div>
-      <div class="flags-grid">
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-arcoiris">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
-            <div class="stripe s4"></div><div class="stripe s5"></div><div class="stripe s6"></div>
-          </div>
-          <div class="flag-info"><div class="fn">🏳️‍🌈 Arco-Íris (Orgulho)</div><div class="fd">6 listras: vida, cura, sol, natureza, harmonia e espírito.</div></div>
+      <div class="mural-posts" id="muralPosts"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONGs ============ -->
+<section id="ongs">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">Apoio &amp; Acolhimento</p>
+      <h2 class="sec-title">ONGs e Centros<br><em>de Acolhimento</em></h2>
+      <p class="sec-lead">Organizações que acolhem, defendem e apoiam a comunidade LGBTQIAPN+ no Brasil.</p>
+    </div>
+    <div class="ongs-grid">
+      <div class="ong-card reveal" data-type="nacional">
+        <span class="ong-badge">Nacional</span>
+        <div class="ong-name">ABGLT</div>
+        <div class="ong-desc">Associação Brasileira de Lésbicas, Gays, Bissexuais, Travestis, Transexuais e Intersexos. Maior organização LGBT+ da América Latina, com mais de 300 organizações filiadas.</div>
+        <div class="ong-contact"><span>🌐 <strong>abglt.org.br</strong></span></div>
+      </div>
+      <div class="ong-card reveal" data-type="saude">
+        <span class="ong-badge">Saúde · SP</span>
+        <div class="ong-name">CDD — Centro de Referência e Defesa da Diversidade</div>
+        <div class="ong-desc">Espaço de acolhimento, orientação jurídica e psicológica para a população LGBTQIA+ em São Paulo. Atendimento gratuito e sigiloso.</div>
+        <div class="ong-contact"><span>📞 <strong>(11) 3392-5405</strong></span></div>
+      </div>
+      <div class="ong-card reveal" data-type="trans">
+        <span class="ong-badge">Trans</span>
+        <div class="ong-name">ANTRA</div>
+        <div class="ong-desc">Associação Nacional de Travestis e Transexuais. Luta por direitos, visibilidade e políticas públicas para pessoas trans em todo o Brasil.</div>
+        <div class="ong-contact"><span>🌐 <strong>antrabrasil.org</strong></span></div>
+      </div>
+      <div class="ong-card reveal" data-type="acolhimento">
+        <span class="ong-badge">Acolhimento · SP</span>
+        <div class="ong-name">Casa 1</div>
+        <div class="ong-desc">Casa de acolhida para jovens LGBT+ em situação de vulnerabilidade em SP. Oferece abrigo, alimentação, apoio psicológico e reinserção social.</div>
+        <div class="ong-contact"><span>🌐 <strong>casaum.org</strong></span></div>
+      </div>
+      <div class="ong-card reveal" data-type="juridico">
+        <span class="ong-badge">Jurídico</span>
+        <div class="ong-name">SBGLT</div>
+        <div class="ong-desc">Sociedade Brasileira de Gênero, Livre Orientação Sexual e Transgeneridade. Suporte jurídico e social para pessoas trans no Brasil.</div>
+        <div class="ong-contact"><span>🌐 <strong>sbglt.org.br</strong></span></div>
+      </div>
+      <div class="ong-card reveal" data-type="crise">
+        <span class="ong-badge">Crise · 24h</span>
+        <div class="ong-name">CVV — Centro de Valorização da Vida</div>
+        <div class="ong-desc">Apoio emocional 24 horas por dia para pessoas em crise. Sigilo total. Especialmente importante para jovens LGBT+ em situação de vulnerabilidade.</div>
+        <div class="ong-contact"><span>📞 <strong>188</strong> (gratuito, 24h)</span><span>🌐 <strong>cvv.org.br</strong></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIREITOS ============ -->
+<section id="direitos">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <p class="tag">Seus direitos</p>
+      <h2 class="sec-title">Guia de Direitos<br><em>LGBTQIA+ no Brasil</em></h2>
+      <p class="sec-lead">Conheça os direitos garantidos por lei para a comunidade LGBTQIA+ no Brasil.</p>
+    </div>
+    <div class="direitos-accordion reveal">
+      <div class="direito-item" onclick="toggleDireito(this)">
+        <div class="direito-header">
+          <div class="direito-left"><span class="direito-icon">💍</span><div><div class="direito-title">Casamento Civil Igualitário</div><div class="direito-subtitle">Garantido pelo STF desde 2013</div></div></div>
+          <div class="direito-arrow">▼</div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-trans">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
-          </div>
-          <div class="flag-info"><div class="fn">⚧ Transgênero</div><div class="fd">Azul, rosa e branco — meninos, meninas e transição. Criada em 1999.</div></div>
+        <div class="direito-body"><div class="direito-content">
+          Em 2013, o CNJ determinou que todos os cartórios do Brasil devem celebrar casamentos entre pessoas do mesmo sexo. Em 2011, o STF já havia reconhecido a <strong>união estável homoafetiva</strong>.<br><br>
+          <ul><li>Qualquer casal pode se casar no civil, independentemente do gênero</li><li>Direito à herança, plano de saúde conjunto, benefícios previdenciários</li><li>Direito à adoção conjunta (decisão do STF, 2010)</li><li>Cartórios não podem negar a celebração</li></ul>
+        </div></div>
+      </div>
+      <div class="direito-item" onclick="toggleDireito(this)">
+        <div class="direito-header">
+          <div class="direito-left"><span class="direito-icon">🪪</span><div><div class="direito-title">Nome e Gênero em Documentos</div><div class="direito-subtitle">Retificação sem cirurgia — STF 2018</div></div></div>
+          <div class="direito-arrow">▼</div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-bi">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
-          </div>
-          <div class="flag-info"><div class="fn">💗 Bissexual</div><div class="fd">Rosa, lavanda e azul representando as dimensões da atração bissexual.</div></div>
+        <div class="direito-body"><div class="direito-content">
+          Em 2018, o STF garantiu que pessoas trans e travestis podem alterar nome e gênero em documentos <strong>sem necessidade de cirurgia, laudos médicos ou processo judicial</strong>.<br><br>
+          <ul><li>Mudança pode ser feita diretamente em cartório</li><li>Não exige diagnóstico médico ou psicológico</li><li>Aplica-se a RG, CPF, certidão de nascimento</li><li>Menores precisam de autorização dos responsáveis e aval judicial</li></ul>
+        </div></div>
+      </div>
+      <div class="direito-item" onclick="toggleDireito(this)">
+        <div class="direito-header">
+          <div class="direito-left"><span class="direito-icon">⚖️</span><div><div class="direito-title">Criminalização da LGBTfobia</div><div class="direito-subtitle">Lei 7.716/89 — STF 2019</div></div></div>
+          <div class="direito-arrow">▼</div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-pan">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
-          </div>
-          <div class="flag-info"><div class="fn">💛 Pansexual</div><div class="fd">Rosa (mulheres), amarelo (todos os gêneros), azul (homens).</div></div>
+        <div class="direito-body"><div class="direito-content">
+          Em 2019, o STF equiparou a <strong>LGBTfobia ao crime de racismo</strong>, tornando atos discriminatórios e violentos contra pessoas LGBT+ criminalizados pela Lei 7.716/89.<br><br>
+          <ul><li>Discriminação por orientação sexual ou identidade de gênero é crime</li><li>Pena de 1 a 3 anos (ou mais, com agravantes)</li><li>Inclui recusa de serviços, emprego, aluguel, etc.</li><li>Crime inafiançável em casos de violência física grave</li></ul>
+        </div></div>
+      </div>
+      <div class="direito-item" onclick="toggleDireito(this)">
+        <div class="direito-header">
+          <div class="direito-left"><span class="direito-icon">🏥</span><div><div class="direito-title">Saúde Integral — Processo Transexualizador</div><div class="direito-subtitle">SUS gratuito desde 2008</div></div></div>
+          <div class="direito-arrow">▼</div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-aroma">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
-          </div>
-          <div class="flag-info"><div class="fn">💚 Arromântico</div><div class="fd">Verdes e tons neutros — espectro da atração romântica.</div></div>
+        <div class="direito-body"><div class="direito-content">
+          O SUS oferece o <strong>Processo Transexualizador</strong> desde 2008 (ampliado em 2013), garantindo assistência à saúde integral para pessoas trans.<br><br>
+          <ul><li>Hormonioterapia gratuita pelo SUS</li><li>Acompanhamento psicológico e psiquiátrico</li><li>Cirurgias de redesignação sexual em hospitais credenciados</li><li>Mastectomia (para homens trans) e outras intervenções</li><li>Atendimento pelo nome social em todos os serviços públicos</li></ul>
+        </div></div>
+      </div>
+      <div class="direito-item" onclick="toggleDireito(this)">
+        <div class="direito-header">
+          <div class="direito-left"><span class="direito-icon">🏫</span><div><div class="direito-title">Nome Social em Instituições</div><div class="direito-subtitle">Decreto Federal 8.727/2016</div></div></div>
+          <div class="direito-arrow">▼</div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-assex">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div>
-          </div>
-          <div class="flag-info"><div class="fn">🖤 Assexual</div><div class="fd">Preto, cinza, branco e roxo — da assexualidade à comunidade.</div></div>
+        <div class="direito-body"><div class="direito-content">
+          O Decreto 8.727/2016 garante o uso do <strong>nome social</strong> em todos os órgãos públicos federais para pessoas trans e travestis.<br><br>
+          <ul><li>Escolas públicas devem usar o nome social nos chamados e registros</li><li>Hospitais, INSS, receita federal, universidades públicas</li><li>Consta no crachá, nos registros internos e nas comunicações</li><li>Muitos estados e municípios têm legislações próprias ainda mais amplas</li></ul>
+        </div></div>
+      </div>
+      <div class="direito-item" onclick="toggleDireito(this)">
+        <div class="direito-header">
+          <div class="direito-left"><span class="direito-icon">💼</span><div><div class="direito-title">Proteção no Trabalho</div><div class="direito-subtitle">Constituição Federal + CLT</div></div></div>
+          <div class="direito-arrow">▼</div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-nb">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div>
+        <div class="direito-body"><div class="direito-content">
+          A Constituição Federal proíbe discriminação e o STF garantiu que demissão por LGBTfobia é ato ilícito.<br><br>
+          <ul><li>Demissão motivada por orientação sexual ou identidade de gênero é passível de indenização</li><li>Assédio moral LGBTfóbico é motivo de rescisão indireta com todos os direitos</li><li>Travestis e trans têm direito ao uso do banheiro correspondente à identidade de gênero</li><li>Empresas podem adotar programas de diversidade e inclusão com benefícios fiscais</li></ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <div class="wrapper">
+    <div class="section-header reveal" style="text-align:center">
+      <p class="tag" style="margin:0 auto 1rem">Descubra-se</p>
+      <h2 class="sec-title">Quiz da<br><em>Diversidade</em></h2>
+      <p class="sec-lead" style="margin:0 auto">Um quiz leve e afirmativo para você se conectar com a comunidade e descobrir com qual energia LGBT+ você mais vibra!</p>
+    </div>
+    <div class="quiz-box reveal">
+      <div class="quiz-progress" id="quizProgress">
+        <div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-step active" id="qstep-0">
+          <div class="quiz-q">Como você prefere celebrar o Mês do Orgulho?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="quizAnswer(0,0)">🎉 Na Parada, dançando e celebrando com a multidão</button>
+            <button class="quiz-opt" onclick="quizAnswer(0,1)">📚 Lendo sobre história e direitos LGBT+</button>
+            <button class="quiz-opt" onclick="quizAnswer(0,2)">🎨 Criando arte, música ou expressão cultural</button>
+            <button class="quiz-opt" onclick="quizAnswer(0,3)">💬 Tendo conversas profundas com pessoas queridas</button>
           </div>
-          <div class="flag-info"><div class="fn">💛 Não-Binário</div><div class="fd">Amarelo, branco, roxo e preto — fora do binário de gênero.</div></div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-inter">
-            <div class="inter-circle"></div>
+        <div class="quiz-step" id="qstep-1">
+          <div class="quiz-q">O que mais representa sua forma de existir no mundo?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="quizAnswer(1,0)">🔥 Resistência — existir é resistir</button>
+            <button class="quiz-opt" onclick="quizAnswer(1,1)">🌊 Fluidez — me recuso a caber em rótulos</button>
+            <button class="quiz-opt" onclick="quizAnswer(1,2)">💡 Visibilidade — estar presente muda o mundo</button>
+            <button class="quiz-opt" onclick="quizAnswer(1,3)">🤝 Comunidade — ninguém sobrevive sozinhx</button>
           </div>
-          <div class="flag-info"><div class="fn">🟡 Intersexo</div><div class="fd">Amarelo e roxo. O círculo representa completude e integridade corporal.</div></div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-gender">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
+        <div class="quiz-step" id="qstep-2">
+          <div class="quiz-q">Qual dessas cores do arco-íris mais te representa agora?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="quizAnswer(2,0)">❤️ Vermelho — paixão e vida intensa</button>
+            <button class="quiz-opt" onclick="quizAnswer(2,1)">💛 Amarelo — alegria e criatividade solar</button>
+            <button class="quiz-opt" onclick="quizAnswer(2,2)">💙 Azul — serenidade e profundidade</button>
+            <button class="quiz-opt" onclick="quizAnswer(2,3)">💜 Roxo — espiritualidade e mistério</button>
           </div>
-          <div class="flag-info"><div class="fn">🌸 Gênero-fluido</div><div class="fd">Rosa, branco, roxo, preto e azul — fluidez entre gêneros.</div></div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-poly">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
+        <div class="quiz-step" id="qstep-3">
+          <div class="quiz-q">Como você reage quando alguém questiona sua identidade?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="quizAnswer(3,0)">🦁 Enfrento de frente — sem espaço para ignorância</button>
+            <button class="quiz-opt" onclick="quizAnswer(3,1)">📖 Educo com paciência — cada conversa importa</button>
+            <button class="quiz-opt" onclick="quizAnswer(3,2)">✨ Brilho ainda mais — minha existência é a resposta</button>
+            <button class="quiz-opt" onclick="quizAnswer(3,3)">🛡️ Protejo minha paz — nem toda batalha vale minha energia</button>
           </div>
-          <div class="flag-info"><div class="fn">💚 Polissexual</div><div class="fd">Rosa, verde e azul — múltiplos gêneros, mas não necessariamente todos.</div></div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-demi">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div>
+        <div class="quiz-step" id="qstep-4">
+          <div class="quiz-q">Qual mensagem você enviaria para seu eu mais jovem?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="quizAnswer(4,0)">💪 "Você é mais forte do que imagina — não desista"</button>
+            <button class="quiz-opt" onclick="quizAnswer(4,1)">🌈 "Sua diferença é sua maior beleza"</button>
+            <button class="quiz-opt" onclick="quizAnswer(4,2)">💖 "Você vai encontrar pessoas que vão te amar como você é"</button>
+            <button class="quiz-opt" onclick="quizAnswer(4,3)">🔓 "Ser livre é possível — e você vai chegar lá"</button>
           </div>
-          <div class="flag-info"><div class="fn">🤍 Demissexual</div><div class="fd">Derivada da assexual, reforça o vínculo emocional como base da atração.</div></div>
         </div>
-        <div class="flag-card reveal">
-          <div class="flag-vis flag-lesbian">
-            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
-          </div>
-          <div class="flag-info"><div class="fn">🧡 Lésbica</div><div class="fd">Tons de laranja, branco e rosa — identidade lésbica moderna e vibrante.</div></div>
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-result-emoji" id="qResultEmoji">🌈</div>
+          <div class="quiz-result-title rainbow-text" id="qResultTitle">Sua energia</div>
+          <div class="quiz-result-text" id="qResultText">Você é incrível!</div>
+          <button class="btn-reiniciar" onclick="reiniciarQuiz()">↺ Refazer o quiz</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== SORTEIO ===================== -->
-  <section id="sorteio">
-    <div class="wrapper">
-      <div class="sorteio-inner">
-        <div class="sorteio-deco">
-          <div class="sd-orb sd1"></div>
-          <div class="sd-orb sd2"></div>
-          <div class="sd-orb sd3"></div>
-        </div>
-        <div class="sorteio-content reveal">
-          <div class="sorteio-badge">🎉 Junho LGBT+ 2025</div>
-          <h2 class="sorteio-title">Sorteio do<br><span class="rainbow-text">Orgulho</span></h2>
-          <p class="sorteio-desc">Em celebração ao Mês do Orgulho, estamos sorteando um kit especial LGBTQIAPN+! Inscreva-se gratuitamente e participe dessa celebração de amor, diversidade e resistência.</p>
-          <ul class="prize-list">
-            <li>🏳️‍🌈 Kit com bandeiras e acessórios temáticos</li>
-            <li>📚 Livros de autores/as LGBTQIAPN+</li>
-            <li>🎨 Produtos de arte e expressão</li>
-            <li>💌 Surpresa especial do organizador(a)</li>
-          </ul>
-          <div class="sorteio-meta">
-            <div class="sm-item"><span class="sm-label">Encerramento</span><strong>30 de junho de 2025</strong></div>
-            <div class="sm-item"><span class="sm-label">Participação</span><strong>Gratuita · Aberta a todos</strong></div>
-            <div class="sm-item"><span class="sm-label">Resultado</span><strong>1º de julho de 2025</strong></div>
-          </div>
-        </div>
-        <div class="sorteio-form reveal">
-          <div class="form-card" id="formCard">
-            <h3>Quero participar! 🌈</h3>
-            <p class="form-sub">Preencha os dados abaixo para se inscrever no sorteio.</p>
-            <div class="form-group">
-              <label for="nome">Nome completo</label>
-              <input type="text" id="nome" placeholder="Seu nome" />
-            </div>
-            <div class="form-group">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" placeholder="seu@email.com" />
-            </div>
-            <div class="form-group">
-              <label for="cidade">Cidade / Estado</label>
-              <input type="text" id="cidade" placeholder="Ex: São Paulo, SP" />
-            </div>
-            <div class="form-group">
-              <label for="identidade">Como você se identifica? (opcional)</label>
-              <select id="identidade">
-                <option value="">Prefiro não informar</option>
-                <option value="lésbica">Lésbica</option>
-                <option value="gay">Gay</option>
-                <option value="bissexual">Bissexual</option>
-                <option value="trans">Trans / Travesti</option>
-                <option value="queer">Queer</option>
-                <option value="intersexo">Intersexo</option>
-                <option value="assexual">Assexual</option>
-                <option value="pansexual">Pansexual</option>
-                <option value="nao-binario">Não-binário/a</option>
-                <option value="plus">Outra identidade do +</option>
-                <option value="aliado">Aliado/a</option>
-              </select>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" id="aceito" />
-              <label for="aceito">Aceito participar do sorteio e entendo que meu e-mail será usado apenas para contato sobre o resultado.</label>
-            </div>
-            <button class="btn-sorteio" id="btnSorteio" onclick="inscrever()">
-              <span>Inscrever-me no Sorteio 🎉</span>
-            </button>
-            <p class="form-disclaimer">Participação gratuita · Sem spam · Com muito amor 🏳️‍🌈</p>
-          </div>
-          <div class="form-success" id="formSuccess" style="display:none;">
-            <div class="success-emoji">🎊</div>
-            <h3>Inscrição confirmada!</h3>
-            <p>Você está participando do Sorteio do Orgulho! Boa sorte e <strong>feliz mês do orgulho</strong>!</p>
-            <div class="confetti-bar">🏳️‍🌈 🌈 🏳️‍⚧️ 💛 💜 🖤 🤍 💚 ❤️ 🧡 💙</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-rainbow-bar"></div>
+  <div style="padding:3.5rem 5vw;text-align:center;color:var(--muted);font-size:.85rem">
+    <div class="footer-logo">🏳️‍🌈 Junho do Orgulho</div>
+    <p>Feito com amor em celebração ao <strong>Mês do Orgulho LGBTQIAPN+</strong></p>
+    <p class="footer-quote">"Nenhum de nós é livre quando algum de nós está acorrentado." — Audre Lorde</p>
+  </div>
+</footer>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer>
-    <div class="footer-rainbow-bar"></div>
-    <div class="footer-inner">
-      <div class="footer-logo">🏳️‍🌈 Junho do Orgulho</div>
-      <p>Feito com amor em celebração ao <strong>Mês do Orgulho LGBTQIAPN+</strong></p>
-      <p class="footer-quote">"Nenhum de nós é livre quando algum de nós está acorrentado." — Audre Lorde</p>
-    </div>
-  </footer>
+<script>
+// NAV
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>40));
+const ham=document.getElementById('hamburger'),mob=document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{mob.classList.toggle('open');ham.classList.toggle('active')});
+function closeMobile(){mob.classList.remove('open');ham.classList.remove('active')}
 
-  <script>
-    // Nav scroll effect
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('mainNav');
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
+// REVEAL
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),80);obs.unobserve(e.target)}})},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-    // Mobile menu
-    const ham = document.getElementById('hamburger');
-    const mob = document.getElementById('mobileMenu');
-    ham.addEventListener('click', () => {
-      mob.classList.toggle('open');
-      ham.classList.toggle('active');
-    });
-    function closeMobile() {
-      mob.classList.remove('open');
-      ham.classList.remove('active');
-    }
+// PALETTE
+function togglePalette(){document.getElementById('paletteTab').classList.toggle('open')}
+function setPalette(name,el){
+  if(name==='default')delete document.body.dataset.palette;
+  else document.body.dataset.palette=name;
+  document.querySelectorAll('.palette-option').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+}
 
-    // Scroll reveal
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), 80);
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.07 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// FRASES
+const frases=[
+  {texto:"Ser quem você é, com orgulho, é o ato mais revolucionário que existe.",emoji:"🌈"},
+  {texto:"Amor não tem gênero. Identidade não precisa de explicação. Existência não pede licença.",emoji:"💜"},
+  {texto:"Você não está erradx. O mundo é que ainda está aprendendo a te receber.",emoji:"✨"},
+  {texto:"Cada pessoa que se assume muda o mundo de alguém que ainda tem medo.",emoji:"🏳️‍🌈"},
+  {texto:"Minha identidade não é uma fase. É quem eu sou — e isso é suficiente.",emoji:"💪"},
+  {texto:"Resistir é florescer onde queriam nos arrancar.",emoji:"🌻"},
+  {texto:"Orgulho não é arrogância. É a recusa de ter vergonha de existir.",emoji:"🔥"},
+  {texto:"Você merece amor — o seu próprio, primeiro. Depois, de quem tiver coragem de te amar inteirx.",emoji:"💖"},
+  {texto:"O armário sufoca. Fora dele, o ar é mais puro — mesmo que venha com tempestades.",emoji:"🕊️"},
+  {texto:"Ser livre não é uma conquista de um dia. É uma prática diária de se escolher.",emoji:"⚡"},
+  {texto:"Nenhuma identidade é menor. Nenhum amor é menos real. Nenhum existir é dispensável.",emoji:"🌊"},
+  {texto:"Para cada criança LGBT+ que se sente sozinha: você não está. Nós existimos. Nós sobrevivemos. Você também vai.",emoji:"🤝"},
+  {texto:"A comunidade não é perfeita, mas é nossa. E imperfeita, ela ainda salva vidas.",emoji:"🏳️‍⚧️"},
+  {texto:"Sua história começa agora — do jeito que você quiser, no ritmo que puder.",emoji:"🌟"},
+  {texto:"Amar quem você ama não é um erro. Nunca foi.",emoji:"❤️"},
+  {texto:"Não existe forma certa de ser queer. Existe a sua forma — e ela é válida.",emoji:"🎨"},
+  {texto:"Cada geração de coragem torna mais fácil para a próxima respirar.",emoji:"🫶"},
+  {texto:"A visibilidade não é vaidade. É a prova de que existimos — e que não vamos desaparecer.",emoji:"👁️"},
+  {texto:"Corpos trans são corpos sagrados. Identidades não-binárias são realidades. Amores diversos são amores.",emoji:"💎"},
+  {texto:"O orgulho nasceu de uma revolta. E enquanto houver opressão, ele continua sendo necessário.",emoji:"✊"},
+];
+let fraseAtual=0;
+function novaFrase(){
+  const el=document.getElementById('fraseTexto'),em=document.getElementById('fraseEmoji');
+  el.classList.add('fading');
+  setTimeout(()=>{
+    fraseAtual=(fraseAtual+1)%frases.length;
+    el.textContent='"'+frases[fraseAtual].texto+'"';
+    em.textContent=frases[fraseAtual].emoji;
+    em.style.animation='none';
+    requestAnimationFrame(()=>{em.style.animation='bounceIn .5s ease'});
+    el.classList.remove('fading');
+  },350);
+}
 
-    // Sorteio form
-    function inscrever() {
-      const nome = document.getElementById('nome').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const aceito = document.getElementById('aceito').checked;
-      const btn = document.getElementById('btnSorteio');
+// MURAL
+let selectedEmoji='🌈';
+let muralPosts=[
+  {texto:"Hoje me assumi para a minha mãe. Ela me abraçou e disse que me amava. Nunca imaginei que seria tão bonito. 🥹",emoji:"💜",tempo:"há 2 min",reacoes:{"💙":3,"🌈":5,"💪":2,"🤝":1}},
+  {texto:"Ainda tenho medo de andar de mãos dadas na rua. Mas todo dia acordo e escolho não ter vergonha de quem sou.",emoji:"✨",tempo:"há 15 min",reacoes:{"💙":7,"🌈":4,"💪":9,"🤝":3}},
+  {texto:"Para quem está no armário: o seu tempo é o seu tempo. Ninguém tem o direito de apressar sua história. Você não deve isso a ninguém.",emoji:"🕊️",tempo:"há 32 min",reacoes:{"💙":12,"🌈":8,"💪":6,"🤝":15}},
+];
+const reacaoLabels=["💙 força","🌈 orgulho","💪 resiste","🤝 não estou só"];
+const reacaoKeys=["💙","🌈","💪","🤝"];
 
-      if (!nome || !email) {
-        btn.classList.add('shake');
-        setTimeout(() => btn.classList.remove('shake'), 600);
-        return;
-      }
-      if (!aceito) {
-        document.querySelector('.form-check').classList.add('highlight-error');
-        setTimeout(() => document.querySelector('.form-check').classList.remove('highlight-error'), 1000);
-        return;
-      }
-      const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailReg.test(email)) {
-        document.getElementById('email').classList.add('input-error');
-        setTimeout(() => document.getElementById('email').classList.remove('input-error'), 1000);
-        return;
-      }
+function selEmoji(btn){
+  document.querySelectorAll('.mural-emoji-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  selectedEmoji=btn.dataset.e;
+}
 
-      document.getElementById('formCard').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'flex';
-      document.getElementById('formSuccess').classList.add('pop-in');
-    }
-  </script>
+function renderMural(){
+  const c=document.getElementById('muralPosts');
+  c.innerHTML='';
+  muralPosts.forEach((post,idx)=>{
+    const div=document.createElement('div');
+    div.className='mural-post';
+    const btns=reacaoKeys.map((k,i)=>{
+      const cnt=post.reacoes[k]||0;
+      return `<button class="reaction-btn" onclick="reagir(${idx},'${k}',this)"><span>${reacaoLabels[i].split(' ')[0]}</span> <span class="count">${cnt}</span> <span style="font-size:.7rem;color:var(--muted)">${reacaoLabels[i].split(' ').slice(1).join(' ')}</span></button>`;
+    }).join('');
+    div.innerHTML=`<div class="mural-post-header"><span class="mural-post-emoji">${post.emoji}</span><span class="mural-post-meta">Anônimx · ${post.tempo}</span></div><div class="mural-post-text">${post.texto}</div><div class="mural-reactions">${btns}</div>`;
+    c.appendChild(div);
+  });
+}
+
+function reagir(idx,key,btn){
+  if(btn.classList.contains('reacted')){muralPosts[idx].reacoes[key]=Math.max(0,(muralPosts[idx].reacoes[key]||0)-1);btn.classList.remove('reacted')}
+  else{muralPosts[idx].reacoes[key]=(muralPosts[idx].reacoes[key]||0)+1;btn.classList.add('reacted')}
+  const c=btn.querySelector('.count');
+  if(c)c.textContent=muralPosts[idx].reacoes[key];
+}
+
+function publicarDesabafo(){
+  const txt=document.getElementById('muralTexto').value.trim();
+  if(!txt)return;
+  muralPosts.unshift({texto:txt,emoji:selectedEmoji,tempo:'agora mesmo',reacoes:{"💙":0,"🌈":0,"💪":0,"🤝":0}});
+  document.getElementById('muralTexto').value='';
+  renderMural();
+}
+renderMural();
+
+// DIREITOS
+function toggleDireito(item){
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.direito-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+// QUIZ
+let quizAnswers=[],currentStep=0;
+const quizResultados=[
+  {emoji:'🔥',title:'ALMA DE RESISTÊNCIA',text:'Você carrega a chama de Stonewall. Sua existência é um ato político e sua presença transforma ambientes. Você não apenas sobrevive — você resiste, inspira e abre caminhos para quem vem depois.'},
+  {emoji:'🌊',title:'ESPÍRITO LIVRE',text:'Você não cabe em rótulos e isso é sua força. Fluido/a como a água, você transcende categorias e lembra ao mundo que identidade é vivência, não caixinha. Sua autenticidade é contagiante.'},
+  {emoji:'✨',title:'LUZ DA VISIBILIDADE',text:'Sua presença importa mais do que você imagina. Ao se mostrar, você diz para alguém em algum lugar que é possível. Você é farol — e o mundo fica mais brilhante com você nele.'},
+  {emoji:'💜',title:'CORAÇÃO DA COMUNIDADE',text:'Você é o tecido que une a comunidade. Seu cuidado, empatia e capacidade de acolher fazem de você um pilar. Lembramos que nenhum de nós sobrevive sozinhx — e você nunca esquece isso.'},
+];
+
+function quizAnswer(step,choice){
+  quizAnswers[step]=choice;
+  document.querySelectorAll(`#qstep-${step} .quiz-opt`).forEach((b,i)=>{if(i===choice)b.classList.add('chosen')});
+  document.querySelectorAll('.quiz-progress-bar')[step].classList.add('done');
+  currentStep=step+1;
+  setTimeout(()=>{
+    if(currentStep<5){document.getElementById(`qstep-${step}`).classList.remove('active');document.getElementById(`qstep-${currentStep}`).classList.add('active')}
+    else mostrarResultado();
+  },350);
+}
+
+function mostrarResultado(){
+  document.getElementById('qstep-4').classList.remove('active');
+  const counts=[0,0,0,0];
+  quizAnswers.forEach(a=>counts[a]++);
+  const maxIdx=counts.indexOf(Math.max(...counts));
+  const res=quizResultados[maxIdx];
+  document.getElementById('qResultEmoji').textContent=res.emoji;
+  document.getElementById('qResultTitle').textContent=res.title;
+  document.getElementById('qResultText').textContent=res.text;
+  document.getElementById('quiz-result').classList.add('active');
+}
+
+function reiniciarQuiz(){
+  quizAnswers=[];currentStep=0;
+  document.getElementById('quiz-result').classList.remove('active');
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('chosen'));
+  document.querySelectorAll('.quiz-progress-bar').forEach(b=>b.classList.remove('done'));
+  document.getElementById('qstep-0').classList.add('active');
+}
+</script>
 </body>
 </html>
