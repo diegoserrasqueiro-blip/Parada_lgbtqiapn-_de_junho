@@ -5,520 +5,603 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Junho do Orgulho — Mês LGBTQIAPN+</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ============================
-       NAVEGAÇÃO FIXADA
-       ============================ -->
-  <nav>
-    <span class="nav-logo">🏳️‍🌈 Junho do Orgulho</span>
+  <!-- ===================== NAV ===================== -->
+  <nav id="mainNav">
+    <a class="nav-logo" href="#hero">🏳️‍🌈 <span>Orgulho</span> LGBTQIAPN+</a>
     <div class="nav-links">
       <a href="#sobre">Sobre</a>
       <a href="#curiosidades">Curiosidades</a>
       <a href="#sigla">A Sigla</a>
-      <a href="#plus">O "+'"</a>
+      <a href="#plus" class="nav-highlight">O "+"</a>
       <a href="#bandeiras">Bandeiras</a>
+      <a href="#sorteio" class="nav-cta">🎉 Sorteio</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- ============================
-       HERO
-       ============================ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" onclick="closeMobile()">Sobre</a>
+    <a href="#curiosidades" onclick="closeMobile()">Curiosidades</a>
+    <a href="#sigla" onclick="closeMobile()">A Sigla</a>
+    <a href="#plus" onclick="closeMobile()">O "+"</a>
+    <a href="#bandeiras" onclick="closeMobile()">Bandeiras</a>
+    <a href="#sorteio" onclick="closeMobile()" class="mobile-cta">🎉 Participar do Sorteio</a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
   <section id="hero">
-    <div class="hero-content">
-      <span class="hero-badge">✦ Junho · Mês do Orgulho LGBTQIAPN+ ✦</span>
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Junho · Mês do Orgulho LGBTQIAPN+
+        <span class="eyebrow-dot"></span>
+      </div>
       <h1 class="hero-title">
-        <span class="rainbow">Junho</span><br>do Orgulho
+        <span class="ht-line line1">JUNHO</span>
+        <span class="ht-line line2">DO</span>
+        <span class="ht-line line3 rainbow-text">ORGULHO</span>
       </h1>
-      <p class="hero-sub">
-        Um mês inteiro dedicado à celebração, à visibilidade e à luta pelos direitos de pessoas LGBTQIAPN+
+      <p class="hero-desc">
+        Um mês inteiro dedicado à celebração, à visibilidade<br>
+        e à luta pelos direitos de pessoas LGBTQIAPN+<br>
         ao redor do mundo.
       </p>
-      <div class="rainbow-bar"></div>
+      <div class="hero-actions">
+        <a href="#sobre" class="btn-primary">Explorar</a>
+        <a href="#sorteio" class="btn-outline">🎉 Participar do Sorteio</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><strong>1969</strong><span>Stonewall</span></div>
+        <div class="hs-sep"></div>
+        <div class="hs"><strong>+170</strong><span>países</span></div>
+        <div class="hs-sep"></div>
+        <div class="hs"><strong>3M+</strong><span>Parada SP</span></div>
+        <div class="hs-sep"></div>
+        <div class="hs"><strong>50+</strong><span>identidades</span></div>
+      </div>
     </div>
+    <div class="hero-scroll-hint">scroll ↓</div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- ============================
-       SOBRE O MOVIMENTO
-       ============================ -->
+  <!-- ===================== SOBRE ===================== -->
   <section id="sobre">
-    <div class="sobre-text reveal">
-      <p class="section-label">O que é</p>
-      <h2 class="section-title">O Movimento LGBTQIAPN+</h2>
-      <p>
-        O movimento LGBTQIAPN+ é um conjunto de lutas sociais, políticas e culturais que busca garantir
-        direitos, respeito e visibilidade para pessoas lésbicas, gays, bissexuais, transgêneras, queers,
-        intersexuais, assexuais/agênero, pansexuais, não-binárias e todos os grupos representados pelo "+".
-      </p>
-      <p>
-        Surgiu de forma mais organizada após os <strong>Distúrbios de Stonewall</strong>, em junho de 1969,
-        em Nova York, quando frequentadores do bar Stonewall Inn resistiram a uma batida policial —
-        dando origem ao que hoje conhecemos como o Mês do Orgulho.
-      </p>
-      <p>
-        Junho foi escolhido em memória desse evento histórico. Em todo o mundo, marchas, eventos culturais,
-        exposições e debates acontecem para celebrar as conquistas e lembrar as batalhas ainda não vencidas.
-      </p>
-      <p>
-        No Brasil, a <strong>Parada LGBT+ de São Paulo</strong> é uma das maiores do mundo, reunindo
-        milhões de pessoas anualmente na Avenida Paulista.
-      </p>
-    </div>
-    <div class="sobre-stats reveal">
-      <div class="stat-card">
-        <div class="stat-number">1969</div>
-        <div class="stat-label">Revolta de Stonewall — o início</div>
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="tag">O que é</p>
+        <h2 class="sec-title">O Movimento<br><em>LGBTQIAPN+</em></h2>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">+170</div>
-        <div class="stat-label">países com eventos de Orgulho</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">3M+</div>
-        <div class="stat-label">pessoas na Parada SP (recorde)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">50+</div>
-        <div class="stat-label">identidades no espectro LGBTQIAPN+</div>
+      <div class="sobre-layout">
+        <div class="sobre-text reveal">
+          <p>O movimento LGBTQIAPN+ é um conjunto de lutas sociais, políticas e culturais que busca garantir direitos, respeito e visibilidade para pessoas lésbicas, gays, bissexuais, transgêneras, queers, intersexuais, assexuais, agênero, pansexuais, não-binárias e todos os grupos representados pelo "+".</p>
+          <p>Surgiu de forma mais organizada após os <strong>Distúrbios de Stonewall</strong>, em junho de 1969, em Nova York, quando frequentadores do bar Stonewall Inn resistiram a uma batida policial — dando origem ao que hoje conhecemos como o Mês do Orgulho.</p>
+          <p>No Brasil, a <strong>Parada LGBT+ de São Paulo</strong> é uma das maiores do mundo, reunindo milhões de pessoas anualmente na Avenida Paulista.</p>
+          <blockquote>"Nenhum de nós é livre quando algum de nós está acorrentado." <cite>— Audre Lorde</cite></blockquote>
+        </div>
+        <div class="sobre-cards reveal">
+          <div class="stat-card sc-pink"><div class="sc-num">1969</div><div class="sc-label">Revolta de Stonewall — o início</div></div>
+          <div class="stat-card sc-yellow"><div class="sc-num">+170</div><div class="sc-label">países com eventos de Orgulho</div></div>
+          <div class="stat-card sc-cyan"><div class="sc-num">3M+</div><div class="sc-label">pessoas na Parada SP (recorde)</div></div>
+          <div class="stat-card sc-green"><div class="sc-num">50+</div><div class="sc-label">identidades no espectro</div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- ============================
-       CURIOSIDADES
-       ============================ -->
-  <section id="curiosidades" style="max-width:100%; padding:100px 8vw;">
-    <div class="reveal">
-      <p class="section-label">Sabia que…</p>
-      <h2 class="section-title">Curiosidades sobre o Movimento</h2>
-      <p class="section-lead">Fatos históricos, culturais e sociais que marcaram a trajetória da comunidade.</p>
-    </div>
-
-    <div class="curiosidades-grid">
-      <div class="curio-card reveal">
-        <div class="curio-icon">🌈</div>
-        <h3>A Bandeira Arco-Íris</h3>
-        <p>Criada em 1978 por Gilbert Baker, a pedido de Harvey Milk. Originalmente tinha 8 listras — rosa-quente (sexualidade), vermelho (vida), laranja (cura), amarelo (sol), verde (natureza), turquesa (magia), azul (serenidade) e violeta (espírito). Por questões de produção, ficou com 6.</p>
+  <!-- ===================== CURIOSIDADES ===================== -->
+  <section id="curiosidades">
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="tag">Sabia que…</p>
+        <h2 class="sec-title">Curiosidades<br><em>sobre o Movimento</em></h2>
+        <p class="sec-lead">Fatos históricos, culturais e sociais que marcaram a trajetória da comunidade.</p>
       </div>
-      <div class="curio-card reveal">
-        <div class="curio-icon">⚡</div>
-        <h3>Stonewall, 1969</h3>
-        <p>Na madrugada de 28 de junho de 1969, clientes do Stonewall Inn resistiram a uma batida policial. A resistência durou dias e é considerada o marco fundador do movimento moderno de direitos LGBTQIAPN+.</p>
-      </div>
-      <div class="curio-card reveal">
-        <div class="curio-icon">🇧🇷</div>
-        <h3>Brasil Pioneiro</h3>
-        <p>O Brasil foi o primeiro país a registrar oficialmente a união civil entre pessoas do mesmo sexo, em 2011, pelo STF. Em 2013, o CNJ estendeu o direito ao casamento civil igualitário a todos os estados.</p>
-      </div>
-      <div class="curio-card reveal">
-        <div class="curio-icon">🏥</div>
-        <h3>Despatologização</h3>
-        <p>A OMS retirou a homossexualidade da lista de doenças mentais em 1990, no "Dia Internacional da Luta contra a Homofobia". Em 2018, foi a vez da transexualidade deixar de ser classificada como transtorno mental.</p>
-      </div>
-      <div class="curio-card reveal">
-        <div class="curio-icon">🎨</div>
-        <h3>Dia do Triângulo Rosa</h3>
-        <p>Na Segunda Guerra Mundial, homossexuais eram obrigados a usar triângulos rosa em campos de concentração. O movimento LGBTQIAPN+ ressignificou o símbolo como forma de memória e resistência.</p>
-      </div>
-      <div class="curio-card reveal">
-        <div class="curio-icon">💜</div>
-        <h3>A Letra "Q" dupla</h3>
-        <p>O "Q" na sigla pode representar tanto "Queer" quanto "Questionando" — pessoas que ainda estão explorando sua identidade de gênero ou orientação sexual, sem pressa de se encaixar em rótulos.</p>
+      <div class="curio-grid">
+        <div class="curio-card reveal" data-color="pink">
+          <span class="curio-icon">🌈</span>
+          <h3>A Bandeira Arco-Íris</h3>
+          <p>Criada em 1978 por Gilbert Baker, a pedido de Harvey Milk. Originalmente tinha 8 listras — incluindo rosa-quente e turquesa. Por questões de produção, ficou com as 6 listras que conhecemos hoje.</p>
+        </div>
+        <div class="curio-card reveal" data-color="yellow">
+          <span class="curio-icon">⚡</span>
+          <h3>Stonewall, 1969</h3>
+          <p>Na madrugada de 28 de junho de 1969, clientes do Stonewall Inn resistiram a uma batida policial. A resistência durou dias e é o marco fundador do movimento moderno de direitos LGBTQIAPN+.</p>
+        </div>
+        <div class="curio-card reveal" data-color="cyan">
+          <span class="curio-icon">🇧🇷</span>
+          <h3>Brasil Pioneiro</h3>
+          <p>O Brasil foi um dos primeiros países a reconhecer a união civil entre pessoas do mesmo sexo, em 2011, pelo STF. Em 2013, o CNJ estendeu o direito ao casamento civil igualitário.</p>
+        </div>
+        <div class="curio-card reveal" data-color="violet">
+          <span class="curio-icon">🏥</span>
+          <h3>Despatologização</h3>
+          <p>A OMS retirou a homossexualidade da lista de doenças mentais em 1990. Em 2018, a transexualidade também deixou de ser classificada como transtorno mental na CID-11.</p>
+        </div>
+        <div class="curio-card reveal" data-color="pink">
+          <span class="curio-icon">🎨</span>
+          <h3>O Triângulo Rosa</h3>
+          <p>Na Segunda Guerra Mundial, homossexuais eram obrigados a usar triângulos rosa nos campos de concentração. O movimento ressignificou o símbolo como forma de memória e resistência.</p>
+        </div>
+        <div class="curio-card reveal" data-color="green">
+          <span class="curio-icon">💜</span>
+          <h3>A Letra "Q" dupla</h3>
+          <p>O "Q" pode representar "Queer" — um termo guarda-chuva de resistência — ou "Questionando", acolhendo quem ainda explora sua identidade sem pressa de se encaixar em rótulos.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- ============================
-       A SIGLA
-       ============================ -->
+  <!-- ===================== SIGLA ===================== -->
   <section id="sigla">
-    <div class="reveal">
-      <p class="section-label">Identidades & Representação</p>
-      <h2 class="section-title">O que significa cada letra?</h2>
-      <p class="section-lead">
-        Cada letra da sigla representa uma identidade ou grupo com histórias, lutas e especificidades próprias.
-        Conhecer cada uma é um passo fundamental para o respeito.
-      </p>
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="tag">Identidades &amp; Representação</p>
+        <h2 class="sec-title">O que significa<br><em>cada letra?</em></h2>
+        <p class="sec-lead">Cada letra representa uma identidade com histórias, lutas e especificidades próprias.</p>
+      </div>
+      <div class="sigla-grid">
+        <div class="letter-card reveal lc-l"><div class="lb">L</div><div class="li"><h4>Lésbica</h4><p>Mulheres (cis ou trans) atraídas por outras mulheres. O termo tem raízes na ilha grega de Lesbos, terra da poetisa Safo.</p></div></div>
+        <div class="letter-card reveal lc-g"><div class="lb">G</div><div class="li"><h4>Gay</h4><p>Homens (cis ou trans) atraídos por outros homens. Também usado de forma ampla para descrever pessoas homossexuais em geral.</p></div></div>
+        <div class="letter-card reveal lc-b"><div class="lb">B</div><div class="li"><h4>Bissexual</h4><p>Pessoas que sentem atração por mais de um gênero. Atração não se confunde com comportamento — a identidade existe independentemente das relações.</p></div></div>
+        <div class="letter-card reveal lc-t"><div class="lb">T</div><div class="li"><h4>Trans / Travesti</h4><p>Pessoas cuja identidade de gênero não corresponde ao sexo atribuído ao nascer. Inclui mulheres trans, homens trans e travestis.</p></div></div>
+        <div class="letter-card reveal lc-q"><div class="lb">Q</div><div class="li"><h4>Queer / Questionando</h4><p>Queer é um termo guarda-chuva para quem não se encaixa nas normas hegemônicas. "Questionando" acolhe quem ainda explora sua identidade.</p></div></div>
+        <div class="letter-card reveal lc-i"><div class="lb">I</div><div class="li"><h4>Intersexo</h4><p>Pessoas que nascem com características físicas que não se encaixam nas definições médicas típicas de masculino ou feminino.</p></div></div>
+        <div class="letter-card reveal lc-a"><div class="lb">A</div><div class="li"><h4>Assexual / Agênero / Aliado</h4><p>Assexual: pouca ou nenhuma atração sexual. Agênero: sem identificação com qualquer gênero. Aliado: apoiadores ativos da comunidade.</p></div></div>
+        <div class="letter-card reveal lc-p"><div class="lb">P</div><div class="li"><h4>Pansexual</h4><p>Atração por pessoas independentemente do gênero. O gênero não é fator determinante da atração — pessoas de todos os gêneros são potencialmente atraentes.</p></div></div>
+        <div class="letter-card reveal lc-n"><div class="lb">N</div><div class="li"><h4>Não-Binário</h4><p>Identidades de gênero fora da divisão binária masculino/feminino. Inclui agênero, bigênero, fluido de gênero e outras experiências não-conformes.</p></div></div>
+      </div>
     </div>
+  </section>
 
-    <div class="sigla-grid">
-      <div class="letter-card lc-l reveal">
-        <div class="letter-badge">L</div>
-        <div class="letter-info">
-          <h4>Lésbica</h4>
-          <p>Mulheres (cis ou trans) que se sentem atraídas afetiva e/ou sexualmente por outras mulheres. O termo tem raízes na ilha grega de Lesbos, terra da poetisa Safo.</p>
+  <!-- ===================== PLUS — PÁGINA DEDICADA ===================== -->
+  <section id="plus">
+    <div class="plus-bg-text">+</div>
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="tag">O símbolo mais inclusivo</p>
+        <h2 class="sec-title plus-title">O que significa<br><em class="plus-em">o "+"?</em></h2>
+        <p class="sec-lead">O "+" é um compromisso de abertura — reconhecimento de que a diversidade humana é maior do que qualquer sigla pode conter. Representa todas as identidades que ainda não têm letra própria, que surgiram depois, ou que existem nos espectros entre categorias já nomeadas.</p>
+      </div>
+
+      <!-- Grade de identidades do + -->
+      <div class="plus-identities">
+        <div class="plus-card reveal" data-cat="gênero">
+          <div class="plus-flag flag-genderfluid-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Gênero</span>
+            <h3>Gênero-fluido</h3>
+            <p>Pessoas cuja identidade de gênero varia ao longo do tempo ou dependendo da situação. Podem se identificar como homem, mulher, ambos ou nenhum — a fluidez é a essência.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="orientação">
+          <div class="plus-flag flag-polysexual-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Orientação</span>
+            <h3>Polissexual</h3>
+            <p>Atração por múltiplos gêneros, mas não necessariamente todos. Diferente de pansexual — a polissexualidade reconhece que alguns gêneros podem não fazer parte da atração.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="espectro">
+          <div class="plus-flag flag-demi-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Espectro</span>
+            <h3>Demissexual</h3>
+            <p>Pertence ao espectro assexual. Pessoas demissexuais só sentem atração sexual após estabelecer um vínculo emocional profundo. A conexão afetiva é condição para o desejo.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="gênero">
+          <div class="plus-flag flag-bigender-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Gênero</span>
+            <h3>Bigênero</h3>
+            <p>Pessoas que se identificam com dois gêneros simultaneamente ou que alternam entre eles — homem e mulher ao mesmo tempo, ou qualquer combinação de gêneros.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="orientação">
+          <div class="plus-flag flag-aromantic-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Orientação</span>
+            <h3>Arromântico</h3>
+            <p>Pessoas que sentem pouca ou nenhuma atração romântica, independentemente da orientação sexual. Podem sentir atração sexual, mas sem o componente romântico.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="espectro">
+          <div class="plus-flag flag-grey-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Espectro</span>
+            <h3>Graysexual</h3>
+            <p>Situado entre assexual e sexualmente ativo — pessoas que raramente sentem atração sexual ou apenas em circunstâncias muito específicas. A "zona cinza" da sexualidade.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="gênero">
+          <div class="plus-flag flag-neutrois-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Gênero</span>
+            <h3>Neutrois / Nulugênero</h3>
+            <p>Identidade de gênero neutra ou nula. Diferentes de agênero — alguns neutrois sentem que possuem um gênero neutro, além da dicotomia binária.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="orientação">
+          <div class="plus-flag flag-sapio-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Orientação</span>
+            <h3>Sapiossexual</h3>
+            <p>Pessoas cuja atração sexual é primariamente despertada pela inteligência. Pode se combinar com outras orientações — um sapiossexual pode ser gay, bissexual, etc.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="espectro">
+          <div class="plus-flag flag-queerplatonic-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Espectro</span>
+            <h3>Queerplatônico</h3>
+            <p>Relacionamentos que transcendem a amizade convencional sem serem tipicamente românticos. Um vínculo profundo que existe fora das categorias padrão.</p>
+          </div>
+        </div>
+        <div class="plus-card reveal" data-cat="gênero">
+          <div class="plus-flag flag-xenogender-mini"></div>
+          <div class="plus-card-body">
+            <span class="plus-tag">Gênero</span>
+            <h3>Xenogênero</h3>
+            <p>Identidades de gênero que usam conceitos não-humanos para se descrever — como elementos da natureza, cores, emoções. Forma de expressão de gênero além do humano convencional.</p>
+          </div>
         </div>
       </div>
 
-      <div class="letter-card lc-g reveal">
-        <div class="letter-badge">G</div>
-        <div class="letter-info">
-          <h4>Gay</h4>
-          <p>Homens (cis ou trans) que se sentem atraídos por outros homens. O termo também é usado de forma ampla para descrever homossexuais em geral.</p>
+      <!-- Bandeiras do + -->
+      <div class="plus-flags-section reveal">
+        <h3 class="plus-flags-title">Bandeiras do <span class="rainbow-text">+</span></h3>
+        <p class="plus-flags-desc">Cada identidade do "+" tem sua própria bandeira, com cores e símbolos que carregam significados únicos.</p>
+        <div class="plus-flags-grid">
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#ff76a4"></div>
+              <div class="pf-stripe" style="background:#fff"></div>
+              <div class="pf-stripe" style="background:#be18d6"></div>
+              <div class="pf-stripe" style="background:#000"></div>
+              <div class="pf-stripe" style="background:#c4e2ff"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Gênero-fluido</div><div class="pflag-desc">Rosa, branco, roxo, preto e azul — a fluidez entre todos os gêneros.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#f714ba; flex:2"></div>
+              <div class="pf-stripe" style="background:#01d66a; flex:1"></div>
+              <div class="pf-stripe" style="background:#1594f6; flex:2"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Polissexual</div><div class="pflag-desc">Rosa, verde e azul — múltiplos gêneros, mas não necessariamente todos.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual" style="background:#000; position:relative; display:flex; align-items:center; justify-content:center;">
+              <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:55px 40px 55px 0;border-color:transparent #fff transparent transparent;"></div>
+              <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:55px 28px 55px 0;border-color:transparent #808080 transparent transparent;"></div>
+              <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:55px 18px 55px 0;border-color:transparent #800080 transparent transparent;"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Demissexual</div><div class="pflag-desc">Derivada da assexual — o vínculo emocional como base da atração.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#f9a8d4; flex:2"></div>
+              <div class="pf-stripe" style="background:#fff; flex:1"></div>
+              <div class="pf-stripe" style="background:#9b59b6; flex:1"></div>
+              <div class="pf-stripe" style="background:#000; flex:1"></div>
+              <div class="pf-stripe" style="background:#9b59b6; flex:1"></div>
+              <div class="pf-stripe" style="background:#fff; flex:1"></div>
+              <div class="pf-stripe" style="background:#f9a8d4; flex:2"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Bigênero</div><div class="pflag-desc">Rosa, branco, roxo e preto — duas identidades em harmonia.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#3d9140"></div>
+              <div class="pf-stripe" style="background:#a8d379"></div>
+              <div class="pf-stripe" style="background:#fff"></div>
+              <div class="pf-stripe" style="background:#a9a9a9"></div>
+              <div class="pf-stripe" style="background:#000"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Arromântico</div><div class="pflag-desc">Verdes, branco, cinza e preto — espectro da atração romântica.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#000; flex:2"></div>
+              <div class="pf-stripe" style="background:#a9a9a9"></div>
+              <div class="pf-stripe" style="background:#fff; flex:2"></div>
+              <div class="pf-stripe" style="background:#a9a9a9"></div>
+              <div class="pf-stripe" style="background:#000; flex:2"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Graysexual</div><div class="pflag-desc">Preto, cinza e branco — a zona entre assexual e sexual.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#fff"></div>
+              <div class="pf-stripe" style="background:#9bc3e5"></div>
+              <div class="pf-stripe" style="background:#2d6e98"></div>
+              <div class="pf-stripe" style="background:#9bc3e5"></div>
+              <div class="pf-stripe" style="background:#fff"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Neutrois</div><div class="pflag-desc">Branco e azuis — gênero neutro além do binário.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual" style="background: linear-gradient(135deg, #ff69b4, #ffd700, #87ceeb, #da70d6);">
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Xenogênero</div><div class="pflag-desc">Espectro colorido — identidades além do humano convencional.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#000"></div>
+              <div class="pf-stripe" style="background:#a3a3a3"></div>
+              <div class="pf-stripe" style="background:#fff"></div>
+              <div class="pf-stripe" style="background:#69359c"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Sapiossexual</div><div class="pflag-desc">Derivada da assexual — atração baseada na inteligência.</div></div>
+          </div>
+          <div class="pflag-card reveal">
+            <div class="pflag-visual">
+              <div class="pf-stripe" style="background:#000050"></div>
+              <div class="pf-stripe" style="background:#2255a4"></div>
+              <div class="pf-stripe" style="background:#fff"></div>
+              <div class="pf-stripe" style="background:#2255a4"></div>
+              <div class="pf-stripe" style="background:#000050"></div>
+            </div>
+            <div class="pflag-info"><div class="pflag-name">Queerplatônico</div><div class="pflag-desc">Azul e branco — vínculos além das categorias convencionais.</div></div>
+          </div>
         </div>
       </div>
 
-      <div class="letter-card lc-b reveal">
-        <div class="letter-badge">B</div>
-        <div class="letter-info">
-          <h4>Bissexual</h4>
-          <p>Pessoas que sentem atração afetiva e/ou sexual por mais de um gênero — por homens e mulheres, ou por outros gêneros também. Atração ≠ comportamento.</p>
-        </div>
-      </div>
-
-      <div class="letter-card lc-t reveal">
-        <div class="letter-badge">T</div>
-        <div class="letter-info">
-          <h4>Trans (Transgênero / Travesti)</h4>
-          <p>Pessoas cuja identidade de gênero não corresponde ao sexo atribuído ao nascer. Inclui mulheres trans, homens trans e travestis — cada uma com sua própria identidade.</p>
-        </div>
-      </div>
-
-      <div class="letter-card lc-q reveal">
-        <div class="letter-badge">Q</div>
-        <div class="letter-info">
-          <h4>Queer / Questionando</h4>
-          <p>Queer é um termo guarda-chuva para quem não se encaixa nas normas de gênero ou sexualidade hegemônicas. "Questionando" representa quem ainda explora sua identidade.</p>
-        </div>
-      </div>
-
-      <div class="letter-card lc-i reveal">
-        <div class="letter-badge">I</div>
-        <div class="letter-info">
-          <h4>Intersexo</h4>
-          <p>Pessoas que nascem com características físicas (genitais, cromossomos, hormônios) que não se encaixam nas definições médicas típicas de masculino ou feminino.</p>
-        </div>
-      </div>
-
-      <div class="letter-card lc-a reveal">
-        <div class="letter-badge">A</div>
-        <div class="letter-info">
-          <h4>Assexual / Agênero / Aliado</h4>
-          <p>Assexual: pouca ou nenhuma atração sexual. Agênero: sem identificação com qualquer gênero. Aliado: pessoas não-LGBTQIAPN+ que apoiam ativamente a comunidade.</p>
-        </div>
-      </div>
-
-      <div class="letter-card lc-p reveal">
-        <div class="letter-badge">P</div>
-        <div class="letter-info">
-          <h4>Pansexual</h4>
-          <p>Atração afetiva e/ou sexual por pessoas independentemente do gênero — por mulheres, homens, não-binários e outros. O gênero não é fator determinante da atração.</p>
-        </div>
-      </div>
-
-      <div class="letter-card lc-n reveal">
-        <div class="letter-badge">N</div>
-        <div class="letter-info">
-          <h4>Não-Binário</h4>
-          <p>Identidades de gênero que existem fora da divisão binária masculino/feminino. Inclui pessoas agênero, bigênero, fluidas de gênero e outras experiências de gênero não-conformes.</p>
+      <!-- Mensagem do + -->
+      <div class="plus-message reveal">
+        <div class="plus-msg-inner">
+          <div class="plus-msg-symbol">+</div>
+          <div class="plus-msg-text">
+            <h3>O "+" é um abraço aberto</h3>
+            <p>Cada nova letra ou símbolo representa uma conquista de visibilidade. O "+" garante que ninguém fique de fora — identidades sem nome, culturas com nomenclaturas próprias e pessoas em autodescoberta são acolhidas. <strong>É o símbolo da incompletude propositiva: sempre haverá espaço para mais.</strong></p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- ============================
-       O "+" — SEÇÃO DESTAQUE
-       ============================ -->
-  <section id="plus" style="max-width:100%;">
-    <div class="plus-intro reveal">
-      <p class="section-label">O símbolo mais inclusivo da sigla</p>
-      <h2 class="section-title">O que significa o <span>"+"?</span></h2>
-      <p class="section-lead">
-        O "+" é muito mais do que um caractere tipográfico. Ele é um compromisso de abertura — um reconhecimento
-        de que a diversidade humana é maior do que qualquer sigla pode conter. Representa todas as identidades que
-        ainda não têm letra própria, que surgiram depois, ou que existem no espectro entre categorias já nomeadas.
-        É um sinal de que a luta é por <em>todos</em>.
-      </p>
-    </div>
-
-    <div class="plus-grid">
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #f5a623;">Gênero</span>
-        <h3>Gênero-fluido</h3>
-        <p>
-          Pessoas cuja identidade de gênero varia ao longo do tempo ou dependendo da situação.
-          Podem se identificar como homem em alguns momentos, mulher em outros, ou nenhum dos dois —
-          a fluidez é a essência da identidade.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #d44dff;">Orientação</span>
-        <h3>Polissexual</h3>
-        <p>
-          Atração por múltiplos gêneros, mas não necessariamente todos. Diferente de pansexual,
-          a polissexualidade reconhece que alguns gêneros podem não fazer parte da atração — e isso é válido.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #50e3c2;">Espectro</span>
-        <h3>Demissexual</h3>
-        <p>
-          Pertence ao espectro assexual. Pessoas demissexuais só sentem atração sexual após
-          estabelecer um vínculo emocional profundo com alguém. A conexão afetiva é condição para o desejo.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #7b7bff;">Gênero</span>
-        <h3>Bigênero</h3>
-        <p>
-          Pessoas que se identificam com dois gêneros simultaneamente ou que alternam entre eles.
-          Podem ser homem e mulher ao mesmo tempo, ou dois gêneros quaisquer, incluindo não-binários.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #ff7eb3;">Orientação</span>
-        <h3>Arromântico</h3>
-        <p>
-          Pessoas que sentem pouca ou nenhuma atração romântica por outras, independentemente
-          da orientação sexual. Podem ainda sentir atração sexual, mas sem o componente romântico.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #ffd966;">Espectro</span>
-        <h3>Graysexual / Greysexual</h3>
-        <p>
-          Situado no espectro entre assexual e sexualmente ativo — pessoas que raramente
-          sentem atração sexual ou só em circunstâncias muito específicas. A "zona cinza" da sexualidade.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #a8ff78;">Gênero</span>
-        <h3>Neutrois / Nulugênero</h3>
-        <p>
-          Identidade de gênero neutra, nula ou sem gênero. Diferente de agênero apenas em nuances —
-          alguns neutrois sentem que têm um gênero, mas que é neutro, não masculino nem feminino.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #ff6b6b;">Orientação</span>
-        <h3>Sapiossexual</h3>
-        <p>
-          Pessoas cuja atração sexual é primariamente despertada pela inteligência.
-          Pode se combinar com outras orientações — um sapiossexual pode também ser gay, bissexual, etc.
-        </p>
-      </div>
-
-      <div class="plus-card reveal">
-        <span class="plus-card-tag" style="color: #c7b8ea;">Diversidade</span>
-        <h3>Kink / BDSM afirmativo</h3>
-        <p>
-          O "+" também inclui pessoas com práticas e comunidades marginalizadas por normas sociais
-          hegemônicas. Dentro de contextos consensuais e seguros, essas identidades também integram a diversidade humana.
-        </p>
-      </div>
-
-      <div class="plus-card reveal" style="grid-column: span 1; background: rgba(255,255,255,0.07);">
-        <span class="plus-card-tag" style="color: var(--yellow);">Por que importa</span>
-        <h3>O "+" é um abraço aberto</h3>
-        <p>
-          A sigla cresce porque o mundo cresce em compreensão. Cada nova letra ou símbolo adicionado
-          representa uma conquista de visibilidade. O "+" garante que ninguém fique de fora — que identidades
-          ainda sem nome, culturas com nomenclaturas próprias e pessoas em processo de autodescoberta
-          sejam reconhecidas e celebradas. <strong>É o símbolo da incompletude propositiva: sempre haverá espaço para mais.</strong>
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ============================
-       BANDEIRAS
-       ============================ -->
+  <!-- ===================== BANDEIRAS ===================== -->
   <section id="bandeiras">
-    <div class="reveal">
-      <p class="section-label">Símbolos de Identidade</p>
-      <h2 class="section-title">Bandeiras da Comunidade</h2>
-      <p class="section-lead">
-        Cada bandeira é um símbolo de identidade, resistência e pertencimento. Conheça as cores e seus significados.
-      </p>
-    </div>
-
-    <div class="flags-grid">
-
-      <!-- Arco-Íris -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-arcoiris">
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
+    <div class="wrapper">
+      <div class="section-header reveal">
+        <p class="tag">Símbolos de Identidade</p>
+        <h2 class="sec-title">Bandeiras da<br><em>Comunidade</em></h2>
+        <p class="sec-lead">Cada bandeira é um símbolo de identidade, resistência e pertencimento.</p>
+      </div>
+      <div class="flags-grid">
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-arcoiris">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
+            <div class="stripe s4"></div><div class="stripe s5"></div><div class="stripe s6"></div>
+          </div>
+          <div class="flag-info"><div class="fn">🏳️‍🌈 Arco-Íris (Orgulho)</div><div class="fd">6 listras: vida, cura, sol, natureza, harmonia e espírito.</div></div>
         </div>
-        <div class="flag-label">
-          <div class="flag-name">🏳️‍🌈 Arco-Íris (Orgulho)</div>
-          <div class="flag-desc">A bandeira original do movimento. 6 listras representando vida, cura, sol, natureza, harmonia e espírito.</div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-trans">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
+          </div>
+          <div class="flag-info"><div class="fn">⚧ Transgênero</div><div class="fd">Azul, rosa e branco — meninos, meninas e transição. Criada em 1999.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-bi">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
+          </div>
+          <div class="flag-info"><div class="fn">💗 Bissexual</div><div class="fd">Rosa, lavanda e azul representando as dimensões da atração bissexual.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-pan">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
+          </div>
+          <div class="flag-info"><div class="fn">💛 Pansexual</div><div class="fd">Rosa (mulheres), amarelo (todos os gêneros), azul (homens).</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-aroma">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
+          </div>
+          <div class="flag-info"><div class="fn">💚 Arromântico</div><div class="fd">Verdes e tons neutros — espectro da atração romântica.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-assex">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div>
+          </div>
+          <div class="flag-info"><div class="fn">🖤 Assexual</div><div class="fd">Preto, cinza, branco e roxo — da assexualidade à comunidade.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-nb">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div>
+          </div>
+          <div class="flag-info"><div class="fn">💛 Não-Binário</div><div class="fd">Amarelo, branco, roxo e preto — fora do binário de gênero.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-inter">
+            <div class="inter-circle"></div>
+          </div>
+          <div class="flag-info"><div class="fn">🟡 Intersexo</div><div class="fd">Amarelo e roxo. O círculo representa completude e integridade corporal.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-gender">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
+          </div>
+          <div class="flag-info"><div class="fn">🌸 Gênero-fluido</div><div class="fd">Rosa, branco, roxo, preto e azul — fluidez entre gêneros.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-poly">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
+          </div>
+          <div class="flag-info"><div class="fn">💚 Polissexual</div><div class="fd">Rosa, verde e azul — múltiplos gêneros, mas não necessariamente todos.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-demi">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div>
+          </div>
+          <div class="flag-info"><div class="fn">🤍 Demissexual</div><div class="fd">Derivada da assexual, reforça o vínculo emocional como base da atração.</div></div>
+        </div>
+        <div class="flag-card reveal">
+          <div class="flag-vis flag-lesbian">
+            <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div><div class="stripe s4"></div><div class="stripe s5"></div>
+          </div>
+          <div class="flag-info"><div class="fn">🧡 Lésbica</div><div class="fd">Tons de laranja, branco e rosa — identidade lésbica moderna e vibrante.</div></div>
         </div>
       </div>
-
-      <!-- Trans -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-trans">
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">⚧ Transgênero</div>
-          <div class="flag-desc">Azul (meninos), rosa (meninas) e branco (transição, não-binaridade ou neutralidade). Criada em 1999.</div>
-        </div>
-      </div>
-
-      <!-- Bissexual -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-bi">
-          <div class="stripe"></div><div class="stripe"></div><div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">💗 Bissexual</div>
-          <div class="flag-desc">Rosa (atração por mesmo gênero), lavanda (atração por ambos) e azul (atração por gênero oposto).</div>
-        </div>
-      </div>
-
-      <!-- Pansexual -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-pan">
-          <div class="stripe"></div><div class="stripe"></div><div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">💛 Pansexual</div>
-          <div class="flag-desc">Rosa (mulheres), amarelo (pessoas não-binárias/todos os gêneros), azul (homens).</div>
-        </div>
-      </div>
-
-      <!-- Arromântico -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-aroma">
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">💚 Arromântico</div>
-          <div class="flag-desc">Verde escuro, verde claro, branco, cinza e preto representam o espectro da atração romântica.</div>
-        </div>
-      </div>
-
-      <!-- Assexual -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-assex">
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">🖤 Assexual</div>
-          <div class="flag-desc">Preto (assexualidade), cinza (zona cinza), branco (parceiros não-assexuais) e roxo (comunidade).</div>
-        </div>
-      </div>
-
-      <!-- Não-Binário -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-nb">
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">💛 Não-Binário</div>
-          <div class="flag-desc">Amarelo (gênero fora do binário), branco (todos os gêneros), roxo (mistura), preto (agênero).</div>
-        </div>
-      </div>
-
-      <!-- Intersexo -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-inter">
-          <div class="flag-inter-circle"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">🟡 Intersexo</div>
-          <div class="flag-desc">Amarelo e roxo, cores neutras. O círculo intacto representa completude e integridade corporal.</div>
-        </div>
-      </div>
-
-      <!-- Gênero-fluido -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-gender">
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">🌸 Gênero-fluido</div>
-          <div class="flag-desc">Rosa (feminilidade), branco (todos os gêneros), roxo (mistura), preto (ausência de gênero), azul (masculinidade).</div>
-        </div>
-      </div>
-
-      <!-- Polissexual -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-poly">
-          <div class="stripe"></div><div class="stripe"></div><div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">💚 Polissexual</div>
-          <div class="flag-desc">Rosa (atração por feminino), verde (não-binário) e azul (masculino) — múltiplos mas não todos os gêneros.</div>
-        </div>
-      </div>
-
-      <!-- Demissexual -->
-      <div class="flag-card reveal">
-        <div class="flag-visual flag-demi">
-          <div class="stripe"></div><div class="stripe"></div>
-          <div class="stripe"></div><div class="stripe"></div>
-        </div>
-        <div class="flag-label">
-          <div class="flag-name">🤍 Demissexual</div>
-          <div class="flag-desc">Derivada da bandeira assexual. Branco, roxo, cinza e preto com um triângulo, reforçando o laço emocional.</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- ============================
-       FOOTER
-       ============================ -->
+  <!-- ===================== SORTEIO ===================== -->
+  <section id="sorteio">
+    <div class="wrapper">
+      <div class="sorteio-inner">
+        <div class="sorteio-deco">
+          <div class="sd-orb sd1"></div>
+          <div class="sd-orb sd2"></div>
+          <div class="sd-orb sd3"></div>
+        </div>
+        <div class="sorteio-content reveal">
+          <div class="sorteio-badge">🎉 Junho LGBT+ 2025</div>
+          <h2 class="sorteio-title">Sorteio do<br><span class="rainbow-text">Orgulho</span></h2>
+          <p class="sorteio-desc">Em celebração ao Mês do Orgulho, estamos sorteando um kit especial LGBTQIAPN+! Inscreva-se gratuitamente e participe dessa celebração de amor, diversidade e resistência.</p>
+          <ul class="prize-list">
+            <li>🏳️‍🌈 Kit com bandeiras e acessórios temáticos</li>
+            <li>📚 Livros de autores/as LGBTQIAPN+</li>
+            <li>🎨 Produtos de arte e expressão</li>
+            <li>💌 Surpresa especial do organizador(a)</li>
+          </ul>
+          <div class="sorteio-meta">
+            <div class="sm-item"><span class="sm-label">Encerramento</span><strong>30 de junho de 2025</strong></div>
+            <div class="sm-item"><span class="sm-label">Participação</span><strong>Gratuita · Aberta a todos</strong></div>
+            <div class="sm-item"><span class="sm-label">Resultado</span><strong>1º de julho de 2025</strong></div>
+          </div>
+        </div>
+        <div class="sorteio-form reveal">
+          <div class="form-card" id="formCard">
+            <h3>Quero participar! 🌈</h3>
+            <p class="form-sub">Preencha os dados abaixo para se inscrever no sorteio.</p>
+            <div class="form-group">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" placeholder="Seu nome" />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" placeholder="seu@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="cidade">Cidade / Estado</label>
+              <input type="text" id="cidade" placeholder="Ex: São Paulo, SP" />
+            </div>
+            <div class="form-group">
+              <label for="identidade">Como você se identifica? (opcional)</label>
+              <select id="identidade">
+                <option value="">Prefiro não informar</option>
+                <option value="lésbica">Lésbica</option>
+                <option value="gay">Gay</option>
+                <option value="bissexual">Bissexual</option>
+                <option value="trans">Trans / Travesti</option>
+                <option value="queer">Queer</option>
+                <option value="intersexo">Intersexo</option>
+                <option value="assexual">Assexual</option>
+                <option value="pansexual">Pansexual</option>
+                <option value="nao-binario">Não-binário/a</option>
+                <option value="plus">Outra identidade do +</option>
+                <option value="aliado">Aliado/a</option>
+              </select>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" id="aceito" />
+              <label for="aceito">Aceito participar do sorteio e entendo que meu e-mail será usado apenas para contato sobre o resultado.</label>
+            </div>
+            <button class="btn-sorteio" id="btnSorteio" onclick="inscrever()">
+              <span>Inscrever-me no Sorteio 🎉</span>
+            </button>
+            <p class="form-disclaimer">Participação gratuita · Sem spam · Com muito amor 🏳️‍🌈</p>
+          </div>
+          <div class="form-success" id="formSuccess" style="display:none;">
+            <div class="success-emoji">🎊</div>
+            <h3>Inscrição confirmada!</h3>
+            <p>Você está participando do Sorteio do Orgulho! Boa sorte e <strong>feliz mês do orgulho</strong>!</p>
+            <div class="confetti-bar">🏳️‍🌈 🌈 🏳️‍⚧️ 💛 💜 🖤 🤍 💚 ❤️ 🧡 💙</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
   <footer>
-    <p>
-      Feito com 🏳️‍🌈 em celebração ao <strong>Mês do Orgulho LGBTQIAPN+</strong> · Junho
-    </p>
-    <p style="margin-top: 0.5rem; font-size: 0.78rem;">
-      "Nenhum de nós é livre quando algum de nós está acorrentado." — Audre Lorde
-    </p>
-    <div class="rainbow-bar"></div>
+    <div class="footer-rainbow-bar"></div>
+    <div class="footer-inner">
+      <div class="footer-logo">🏳️‍🌈 Junho do Orgulho</div>
+      <p>Feito com amor em celebração ao <strong>Mês do Orgulho LGBTQIAPN+</strong></p>
+      <p class="footer-quote">"Nenhum de nós é livre quando algum de nós está acorrentado." — Audre Lorde</p>
+    </div>
   </footer>
 
-  <!-- ============================
-       SCROLL REVEAL SCRIPT
-       ============================ -->
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 80);
-          observer.unobserve(entry.target);
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobileMenu');
+    ham.addEventListener('click', () => {
+      mob.classList.toggle('open');
+      ham.classList.toggle('active');
+    });
+    function closeMobile() {
+      mob.classList.remove('open');
+      ham.classList.remove('active');
+    }
+
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), 80);
+          obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Sorteio form
+    function inscrever() {
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const aceito = document.getElementById('aceito').checked;
+      const btn = document.getElementById('btnSorteio');
+
+      if (!nome || !email) {
+        btn.classList.add('shake');
+        setTimeout(() => btn.classList.remove('shake'), 600);
+        return;
+      }
+      if (!aceito) {
+        document.querySelector('.form-check').classList.add('highlight-error');
+        setTimeout(() => document.querySelector('.form-check').classList.remove('highlight-error'), 1000);
+        return;
+      }
+      const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailReg.test(email)) {
+        document.getElementById('email').classList.add('input-error');
+        setTimeout(() => document.getElementById('email').classList.remove('input-error'), 1000);
+        return;
+      }
+
+      document.getElementById('formCard').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'flex';
+      document.getElementById('formSuccess').classList.add('pop-in');
+    }
   </script>
-
 </body>
 </html>
